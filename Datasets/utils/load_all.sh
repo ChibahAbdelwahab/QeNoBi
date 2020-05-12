@@ -1,6 +1,7 @@
 node test_db_loader.js TEST t1 0 1 true false ../Test1.csv
 node test_db_loader.js TEST t2 0 1 true false ../Test2.csv
-node test_db_loader.js TEST t3 0 1 true false ../Test3.csv
+node test_db_loader.js TEST t3 0 1 true false ../7D-30-[1-10]-[SEX]-lcm.csv
+node test_db_loader.js CUSTOM C1 0 1 true false ../7D-30-[1-10]-[SEX]-lcm.csv
 
 node test_db_loader.js MITBIH s1 0 1 true false ../MIT-BIH-series1.csv
 node test_db_loader.js MITBIH s2 0 1 true false ../MIT-BIH-series2.csv

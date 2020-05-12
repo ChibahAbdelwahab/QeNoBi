@@ -37,7 +37,9 @@ create table Measurement (
 	snum VARCHAR, 
 	time timestamp without time zone, 
 	value double precision,
-	primary key (sname, snum, time));
+	metadata json,
+	primary key (sname, snum, time)
+);
 
 create table MeasurementDescription (
 	key varchar primary key,
@@ -51,8 +53,9 @@ create table MeasurementDescription (
 );
 
 
-
+measurementkemeasurementke
 COPY measurementdescription (key, description, relativetime, xaxisdesc, yaxisdesc, xaxistype, yaxistype, xaxisformat) FROM stdin;
+CMP1	Recession1	f	Time	num	date	number	\N
 TEST	Tests	t	X	Y	number	number	\N
 MITBIH	MIT-BIH	t	Time	Instantaneous Heart Rate	number	number	\N
 PRICES	Stock Prices	f	Time	Price	date	number	%x
@@ -68,48 +71,86 @@ multiplequeries4	Multiple Queries 4	f	X	Y	number	date
 USRTST	USR Studies	t	Time	Y	date	number	%x
 \.
 
+create table MeasurementDescription (
+	key varchar primary key,
+	description varchar,
+	relativeTime boolean,
+	xAxisDesc varchar,
+	yAxisDesc varchar,
+	xAxisType varchar,
+	yAxisType varchar,
+	xAxisFormat varchar
+);
+
 CREATE TABLE measurementseriesdescription (
   measurementkey character varying NOT NULL,
   measurementseries character varying NOT NULL,
-  description character varying
-	constraint pk1 primary key (measurementKey, measurementSeries)
+  description character varying,
+  constraint pk1 primary key (measurementKey, measurementSeries)
 );
 
-insert into MeasurementDescription values ('TEST', 'Tests', true, 'X', 'Y', 'number', 'number', NULL);
-insert into MeasurementSeriesDescription values ('TEST', 't1', 'Test1');
-insert into MeasurementSeriesDescription values ('TEST', 't2', 'Test2');
-insert into MeasurementSeriesDescription values ('TEST', 't3', 'Test3');
+cd .
+insert into MeasurementDescription values ('CUSTOM', 'CUSTOM', true, 'X', 'Y', 'number', 'number', NULL);
+insert into MeasurementSeriesDescription values ('CUSTOM', '1W', 'CUSTOM1');
+insert into MeasurementSeriesDescription values ('CUSTOM', '2W', 'CUSTOM2');
+insert into MeasurementSeriesDescription values ('CUSTOM', '3W', 'CUSTOM3');
+insert into MeasurementSeriesDescription values ('CUSTOM', '4W', 'CUSTOM4');
 
-insert into MeasurementDescription values ('MITBIH', 'MIT-BIH', true, 'Time', 'Instantaneous Heart Rate', 'number', 'number', NULL);
-insert into MeasurementSeriesDescription values ('MITBIH', 's1', 'Series 1');
-insert into MeasurementSeriesDescription values ('MITBIH', 's2', 'Series 2');
-insert into MeasurementSeriesDescription values ('MITBIH', 's3', 'Series 3');
-insert into MeasurementSeriesDescription values ('MITBIH', 's4', 'Series 4');
-insert into MeasurementSeriesDescription values ('MITBIH', 'STC301', 'ST Change 301');
-insert into MeasurementSeriesDescription values ('MITBIH', 'STC302', 'ST Change 302');
 
-insert into MeasurementDescription values ('PRICES', 'Stock Prices', false, 'Time', 'Price', 'date', 'number', '%x');
-insert into MeasurementSeriesDescription values ('PRICES', 'APPL', 'Apple');
-insert into MeasurementSeriesDescription values ('PRICES', 'MSFT', 'Microsoft');
-insert into MeasurementSeriesDescription values ('PRICES', 'AMZN', 'Amazon.com');
-insert into MeasurementSeriesDescription values ('PRICES', 'INTL', 'FCStone');
-insert into MeasurementSeriesDescription values ('PRICES', 'UTX', 'United Technologies');
-insert into MeasurementSeriesDescription values ('PRICES', 'APC', 'Anadarko Petroleum Corp.');
-insert into MeasurementSeriesDescription values ('PRICES', 'ALK', 'Alaska Air Group');
 
-insert into MeasurementDescription values ('QTDB', 'QT Database', true, 'Sample', 'V5', 'number', 'number', NULL);
-insert into MeasurementSeriesDescription values ('QTDB', 'sel102', 'sel102');
 
-insert into MeasurementDescription values ('ISP', 'ISP traffic', false, 'Time', 'Bits', 'date', 'number', '%x');
-insert into MeasurementSeriesDescription values ('ISP', 's1', 's1');
-insert into MeasurementSeriesDescription values ('ISP', 's2', 's2');
+    insert into MeasurementDescription values ('RAW-SLIDING_WINDOWS', 'Raw Data with sliding windows algorithm', false, 'Time', 'Time', 'date', 'number', '%x');
+insert into MeasurementSeriesDescription values ('RAW-SLIDING_WINDOWS', 'RAW-SLIDING_WINDOWS-1W', 'RAW-SLIDING_WINDOWS 1W');
+insert into MeasurementSeriesDescription values ('RAW-SLIDING_WINDOWS', 'RAW-SLIDING_WINDOWS-2W', 'RAW-SLIDING_WINDOWS 2W');
+insert into MeasurementSeriesDescription values ('RAW-SLIDING_WINDOWS', 'RAW-SLIDING_WINDOWS-3W', 'RAW-SLIDING_WINDOWS 3W');
+insert into MeasurementSeriesDescription values ('RAW-SLIDING_WINDOWS', 'RAW-SLIDING_WINDOWS-4W', 'RAW-SLIDING_WINDOWS 4W');
 
-insert into MeasurementDescription values ('CMP1', 'Recession1', false, 'Time', 'num', 'date', 'number', NULL);
-insert into MeasurementSeriesDescription values ('CMP1', 'unemployed', 'unemployed');
-insert into MeasurementSeriesDescription values ('CMP1', 'insuranceeq', 'Insurance companies equity');
 
-insert into MeasurementSeriesDescription values ('USRTST', 'forexchangebrius', 'Foreign exchange british US');
-insert into MeasurementSeriesDescription values ('USRTST', 'saugeenrivtemp', 'Saugeen river temperature');
-insert into MeasurementSeriesDescription values ('USRTST', 'precipitationseastport', 'Precipitations Eastport');
-insert into MeasurementSeriesDescription values ('USRTST', 'importprodminingcoal', 'Import for mining of coal');
-insert into MeasurementSeriesDescription values ('USRTST', 'meandailyflowcumecsvatnsdals', 'Mean daily flow Vatnsdalsa River');
+
+insert into MeasurementDescription values ('RAW', 'Raw Data without', false, 'Time', 'Time', 'date', 'number', '%x');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-1D', 'RAW 1D');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-2D', 'RAW 2D');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-3D', 'RAW 3D');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-1W', 'RAW 1W');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-2W', 'RAW 2W');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-3W', 'RAW 3W');
+insert into MeasurementSeriesDescription values ('RAW', 'RAW-4W', 'RAW 4W');
+
+    insert into MeasurementDescription values ('TEST', 'Tests', true, 'X', 'Y', 'number', 'number', NULL);
+    insert into MeasurementSeriesDescription values ('TEST', 't1', 'Test1');
+    insert into MeasurementSeriesDescription values ('TEST', 't2', 'Test2');
+    insert into MeasurementSeriesDescription values ('TEST', 't3', 'Test3');
+
+    insert into MeasurementDescription values ('MITBIH', 'MIT-BIH', true, 'Time', 'Instantaneous Heart Rate', 'number', 'number', NULL);
+    insert into MeasurementSeriesDescription values ('MITBIH', 's1', 'Series 1');
+    insert into MeasurementSeriesDescription values ('MITBIH', 's2', 'Series 2');
+    insert into MeasurementSeriesDescription values ('MITBIH', 's3', 'Series 3');
+    insert into MeasurementSeriesDescription values ('MITBIH', 's4', 'Series 4');
+    insert into MeasurementSeriesDescription values ('MITBIH', 'STC301', 'ST Change 301');
+    insert into MeasurementSeriesDescription values ('MITBIH', 'STC302', 'ST Change 302');
+
+    insert into MeasurementDescription values ('PRICES', 'Stock Prices', false, 'Time', 'Price', 'date', 'number', '%x');
+    insert into MeasurementSeriesDescription values ('PRICES', 'APPL', 'Apple');
+    insert into MeasurementSeriesDescription values ('PRICES', 'MSFT', 'Microsoft');
+    insert into MeasurementSeriesDescription values ('PRICES', 'AMZN', 'Amazon.com');
+    insert into MeasurementSeriesDescription values ('PRICES', 'INTL', 'FCStone');
+    insert into MeasurementSeriesDescription values ('PRICES', 'UTX', 'United Technologies');
+    insert into MeasurementSeriesDescription values ('PRICES', 'APC', 'Anadarko Petroleum Corp.');
+    insert into MeasurementSeriesDescription values ('PRICES', 'ALK', 'Alaska Air Group');
+
+    insert into MeasurementDescription values ('QTDB', 'QT Database', true, 'Sample', 'V5', 'number', 'number', NULL);
+    insert into MeasurementSeriesDescription values ('QTDB', 'sel102', 'sel102');
+
+    insert into MeasurementDescription values ('ISP', 'ISP traffic', false, 'Time', 'Bits', 'date', 'number', '%x');
+    insert into MeasurementSeriesDescription values ('ISP', 's1', 's1');
+    insert into MeasurementSeriesDescription values ('ISP', 's2', 's2');
+
+    insert into MeasurementDescription values ('CMP1', 'Recession1', false, 'Time', 'num', 'date', 'number', NULL);
+    insert into MeasurementSeriesDescription values ('CMP1', 'unemployed', 'unemployed');
+    insert into MeasurementSeriesDescription values ('CMP1', 'insuranceeq', 'Insurance companies equity');
+
+    insert into MeasurementSeriesDescription values ('USRTST', 'forexchangebrius', 'Foreign exchange british US');
+    insert into MeasurementSeriesDescription values ('USRTST', 'saugeenrivtemp', 'Saugeen river temperature');
+    insert into MeasurementSeriesDescription values ('USRTST', 'precipitationseastport', 'Precipitations Eastport');
+    insert into MeasurementSeriesDescription values ('USRTST', 'importprodminingcoal', 'Import for mining of coal');
+    insert into MeasurementSeriesDescription values ('USRTST', 'meandailyflowcumecsvatnsdals', 'Mean daily flow Vatnsdalsa River');

@@ -5,6 +5,8 @@ Qetch.value('Parameters', {
   X_TICK_WIDTH: 2, // px
   MAX_MATCH_GOOD: 5,
   MAX_MATCH_MEDIUM: 40,
+
+
   MATCH_LINE_COLOR: function (match) {
     if (match < 5) return 'rgba(92, 184, 92, 0.8)';
     if (match < 40) return 'rgba(240, 173, 78, 0.7)';

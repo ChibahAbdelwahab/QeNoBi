@@ -69,7 +69,7 @@ loadDataAsMeasurements(filename, timeCol, valueCol, isTimeRelative, function (me
             'insert into Measurement values ($1, $2, $3, $4)' :
             'insert into Measurement values ($1, $2, to_timestamp($3), $4)', 
             [sname, snum, item.time, item.value], 
-            function(err, result) {
+            function(err, result)   {
                 if (err) console.error('error running query', err);
                 callback(err);
             }

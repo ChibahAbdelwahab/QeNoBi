@@ -632,7 +632,6 @@ QetchQuery.directive('queryCanvas', ['QetchQuery_QueryAPI', 'QetchQuery_DrawRefi
             for (i in points) points[i].x = points[i].x - scope.currentQuery.originX;
 
             scope.currentQuery.points = points;
-
             return points;
           };
 
