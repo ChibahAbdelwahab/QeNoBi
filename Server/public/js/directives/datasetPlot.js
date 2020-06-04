@@ -28,7 +28,6 @@ Dataset.directive('datasetPlot', ['$location', '$anchorScroll', 'DatasetAPI', 'P
                 var $element = $(element);
                 $element.find('> #dataset .line-match, > #dataset .debug-line').remove(); // clean the other matches
                 $scope.svg = d3.select($element.find('> #dataset .main')[0]);
-                console.log("The matches ", matches)
                 if (smoothIteration !== null) $scope.smoothIteration = smoothIteration;
 
                 if (matches.length === 0) return;

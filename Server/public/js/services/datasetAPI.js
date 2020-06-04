@@ -57,8 +57,6 @@ Dataset.service('DatasetAPI', ['$rootScope', 'Data_Utils', 'Dataset_Resource', '
         for (i in this.dataDefinition) {
             var datadef = this.dataDefinition[i];
             if (datadef.key !== key) continue;
-            console.log(datadef)
-
             this.dataset = {
                 key: datadef.key,
                 desc: datadef.desc,
@@ -222,8 +220,7 @@ Dataset.service('DatasetAPI', ['$rootScope', 'Data_Utils', 'Dataset_Resource', '
             }));
             this.data[i] = [
                 _.map(this.dataset.series[i].values, function (el) {
-                    console.log(el)
-                    return new Qetch.Point(xScale(el.x), self.displaySize.height - yScale(el.y), el.x, el.y,el.metadata);
+                    return new Qetch.Point(xScale(el.x), self.displaySize.height - yScale(el.y), el.x, el.y, el.metadata);
                 })
             ];
 

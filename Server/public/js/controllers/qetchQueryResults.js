@@ -7,7 +7,7 @@ QetchQuery.controller('QetchQuery_ResultsCntrl',
             $scope.selectedSeriesNum = 0;
 
             $scope.matches = null;
-            $scope.orderingColumns = ['+adjMatch'];
+            $scope.orderingColumns = ['+adjMatch',''];
 
             $scope.MAX_MATCH_GOOD = Parameters.MAX_MATCH_GOOD;
             $scope.MAX_MATCH_MEDIUM = Parameters.MAX_MATCH_MEDIUM;
@@ -86,7 +86,6 @@ QetchQuery.controller('QetchQuery_ResultsCntrl',
             };
             $scope.matchThresholdClass = function (matchValue) {
                 let threshold = parseFloat($("#threshold").val())
-                console.log("Threshold", matchValue)
                 if (matchValue >= threshold)
                     return 'label-success';
                 return 'label-danger';
@@ -196,7 +195,7 @@ QetchQuery.controller('QetchQuery_ResultsCntrl',
                                 matchPos: match.matchPos,
                                 altitude: match.altitude,
                                 height: match.height
-                            }) == 'true') ? 1 : -1;
+                            }) == 'true') ? 1 : -1;s
                         }
                         match.adjMatch = match.match; // * (match.feedback ? 0.5 : 1.5);
                     }

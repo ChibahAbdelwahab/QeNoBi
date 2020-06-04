@@ -60,6 +60,17 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matches = this.queryLength ? this.executeQueryVDTWorVED() : [];
         } else {
             matches = this.executeQuery();
+            $("#rawMatches").val(JSON.stringify(matches.map(({customers, points, timespan, smoothIteration}) => {
+                    return {
+                        customers,
+                        date: new Date(points[0].origX),
+                        duration: timespan.str,
+                        smoothIteration,
+                    }
+                }
+            )))
+            $("#resultsCount").val(matches.length)
+
         }
         DatasetAPI.setMatches(matches);
         DatasetAPI.notifyMatchesChanged();
@@ -90,8 +101,14 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
      * It then notify the results
      */
     this.executeQuery = function () {
-        var startingTime = new Date();
+        // Get some input parameters
+        // TODO this way does not respect the framework's guidelines
+        let customers = JSON.parse("[" + $("#customers").val() + "]")
+        let threshold = parseFloat($("#threshold").val())
+        if (customers.length == 0)
+            customers = null
 
+        var startingTime = new Date();
         var queryCtx = {
             matches: [],
             notMatches: [],
@@ -100,13 +117,11 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             notOperator: this.notOperator,
             notOperatorVal: -1,
             datasetSize: null,
-            dataPoints: []
+            dataPoints: [],
+            queryType: parseInt($("#queryType").val()),
+            customers: customers,
+            threshold: threshold,
         };
-
-        queryCtx.datasetSize = null;
-        let queryMeta = {};
-        queryMeta["customers"] = JSON.parse("[" + $("#customers").val() + "]")
-        queryCtx.queryMeta = queryMeta;
         for (queryCtx.snum = 0; queryCtx.snum < DatasetAPI.getDatasetsNum(); queryCtx.snum++) {
             var smoothIterationsNum = DatasetAPI.getSmoothIterationsNum(queryCtx.snum);
             if (smoothIterationsNum === 0) throw 'No data to query'; // should be controlled by the UI
@@ -120,7 +135,8 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
         var finishingTime = new Date();
         Qetch.DEBUG_LAST_EXECUTING_TIME = finishingTime - startingTime;
-
+        // Report execution time
+        $("#Rtime").val(Qetch.DEBUG_LAST_EXECUTING_TIME)
         return this.notOperator >= 0 ? queryCtx.notMatches : queryCtx.matches;
     };
 
@@ -159,6 +175,49 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                 queryCtx.notOperatorVal = queryCtx.notOperator;
             }
             this.findNotMatches(dataSections, queryCtx);
+        }
+        // Filter according to drift type
+        switch (queryCtx.queryType) {
+            case 0:
+                console.log("// Shape query", queryCtx.smoothi)
+                break;
+            case 1:
+                console.log("// Shape and customers query", queryCtx.smoothi)
+                if (queryCtx.customers.length == 0) break;
+                queryCtx.matches.forEach(e => {
+                    e.customersRatio = queryCtx.customers.filter(ee => {
+                        return e.customers.includes(ee)
+                    }).length / queryCtx.customers.length
+                })
+                queryCtx.matches = queryCtx.matches.filter(e => {
+                    return e.customersRatio > queryCtx.threshold
+                })
+                break;
+            case 2:
+                console.log("Shape and customers and drift query", queryCtx.smoothi)
+                if (queryCtx.customers.length === 0) break;
+                queryCtx.matches.forEach(e => {
+                    let index = e.points[0].origX;
+                    let next = false;
+                    let prev_customers = [];
+                    for (i = queryCtx.dataPoints.length - 1; i >= 0; i--) {
+                        if (next) {
+                            prev_customers = JSON.parse("[" + queryCtx.dataPoints[i].metadata.customers + "]");
+                            break
+                        }
+                        if (queryCtx.dataPoints[i].origX == index) next = true
+                    }
+                    e.customers = e.customers.filter(ee => {
+                        return prev_customers.indexOf(ee) < 0
+                    })
+                    e.customersRatio = queryCtx.customers.filter(ee => {
+                        return e.customers.includes(ee)
+                    }).length / queryCtx.customers.length
+                })
+                queryCtx.matches = queryCtx.matches.filter(e => {
+                    return e.customersRatio > queryCtx.threshold
+                })
+                break;
         }
     };
 
@@ -364,6 +423,9 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
         if (partialQuery) return {match: pointsMatchRes.match};
 
+        let sectionsCustomers = matchedPts.map(e => JSON.parse("[" + e.metadata.customers + "]")).concat();
+        sectionsCustomers = [...new Set([].concat.apply([], sectionsCustomers))];
+
         return {
             snum: queryCtx.snum,
             smoothIteration: queryCtx.smoothi,
@@ -376,7 +438,9 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             maxPos: maxPos,
             sections: matchedSections,
             debugLines: pointsMatchRes.debugLines,
-            errors: pointsMatchRes.errors
+            errors: pointsMatchRes.errors,
+            customers: sectionsCustomers,
+            customersRatio: 1
         };
     };
 
@@ -605,7 +669,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             // if (res.num > 0) pointDifferencesCost += math.sqrt(res.sum) / res.num;
             if (res.num > 0) pointDifferencesCost += res.sum / res.num;
         }
-            // The result is defined as the average normalized difference between the curves
+        // The result is defined as the average normalized difference between the curves
         return {
             match: pointDifferencesCost * Parameters.VALUE_DIFFERENCE_WEIGHT + rescalingCost * Parameters.RESCALING_COST_WEIGHT,
             matchedPoints: matchedPoints,
