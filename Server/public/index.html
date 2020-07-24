@@ -337,16 +337,30 @@
                         <!--ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">-->
                         <!--</i>-->
                         <!--</th>-->
+                        <th class="matchTableLabel" ng-click="changeColumnOrdering('score')"
+                            title="Match value: 0 for a perfect match, higher values for poor matches">
+                            Score
+                            <i ng-show="getLastOrderingColumn() == 'score'"
+                               ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
+                            </i>
+                        </th>
                         <th class="matchTableLabel" ng-click="changeColumnOrdering('adjMatch')"
                             title="Match value: 0 for a perfect match, higher values for poor matches">
-                            Distance
+                            Shape
                             <i ng-show="getLastOrderingColumn() == 'adjMatch'"
                                ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
                             </i>
                         </th>
                         <th class="matchTableLabel" ng-click="changeColumnOrdering('customersRatio')">
                             <!--                            title="Match value: 0 for a perfect match, higher values for poor matches">-->
-                            Customers Ratio
+                            Customers
+                            <i ng-show="getLastOrderingColumn() == 'adjMatch'"
+                               ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
+                            </i>
+                        </th>
+                        <th class="matchTableLabel" ng-click="changeColumnOrdering('timeScore')">
+                            <!--                            title="Match value: 0 for a perfect match, higher values for poor matches">-->
+                            Time
                             <i ng-show="getLastOrderingColumn() == 'adjMatch'"
                                ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
                             </i>
@@ -412,14 +426,27 @@
                                 <!--<span ng-click="feedback(match.id, false)" class="btn-feedback btn btn-default btn-xs glyphicon glyphicon-remove" ng-class="getFeedbackClass(match.id, false)"></span>-->
                                 <!--</td>-->
                                 <td class="middle-vertical-align matchTableValue">
+                                    <div class="label" ng-class="matchValueClass(match.score)">
+                                        {{match.score | number: 4}}
+                                    </div>
+                                    <!--&nbsp; id: {{match.id}}-->
+                                </td>
+
+                                <td class="middle-vertical-align matchTableValue">
                                     <div class="label" ng-class="matchValueClass(match.match)">
-                                        {{match.adjMatch | number: 2}}
+                                        {{match.adjMatch | number: 4}}
                                     </div>
                                     <!--&nbsp; id: {{match.id}}-->
                                 </td>
                                 <td class="middle-vertical-align matchTableValue">
                                     <div class="label" ng-class="matchThresholdClass(match.customersRatio)">
                                         {{match.customersRatio | number: 4 }}
+                                    </div>
+                                    <!--&nbsp; id: {{match.id}}-->
+                                </td>
+                                <td class="middle-vertical-align matchTableValue">
+                                    <div class="label" ng-class="matchThresholdClass(match.timeScore)">
+                                        {{match.timeScore | number: 4 }}
                                     </div>
                                     <!--&nbsp; id: {{match.id}}-->
                                 </td>
@@ -454,12 +481,38 @@
                 <option value="0">Shape</option>
                 <option value="1">Shape and customers</option>
                 <option value="2">Shape and customers and drift (Interest gain)</option>
+                <option value="3">Shape and customers and time</option>
+                <option value="4">Shape and time</option>
             </select>
-            <input id="customers" class="col-xs-12" type="text" placeholder="Customers to filter on "
-                   value="397538,231687,328105,1104212,146423,319243,157246,407312,1033518,604562,687941,137685,445292,223788,118067,912398,146710,116610,600391,168223,221900,180086,152685,556050,505454,460243,1005729,185342,834533,141443,217903,195078,188629,343142,651647,107727,116517,1055191,341717,454300,323618,457688,518655,1173623,887117,148931,357876,365101,406959,964878,203468,105524,336318,284530,1023595,1012953,103240,1107311,115022,804972,423611,212029,410571,805158,249904,717621,274953,876768,599789,876693,189283,274871,440533,362989,379448,251350,876237,152633,560864,437974,252704,176750,402831,164231,1199522,147391,149886,508797,1003223,130527,764005,1164511,347942,177693,125034,150269,157287,317586,164308,474879,126277,120248,110455,273864,1028559,105193,214066,532504,465567,498303,800420,1066967,530327,275425,721386,119521,252547,227628,454815,863705,181642,416213,114170,390199,1163901,205800,186654,1176921,417444,257484,915090,480726,151531,201553,386629,381297,1039029,335036,285450,886537,500865,1062318,452975,440514,192635,811951,180230,496109,287389,251114,262728,444490,289974,844897,209276,215849,117622,465308,545953,155913,130184,711978,286161,134914,183500,957568,537723,570477,416517,545910,278491,645406,560048,145073,436127,683240,517885,642259,538133,226924,145478,140387,219870,457599,122099,215374,475859,1030140,262442,458836,264938,519327,809144,173174,482512,283816,806369,239451,133917,520056,422921,211671,624145,416657,406056,188309,309886,971477,127802,253055,188588,146032,285090,1004644,167976,721306,200898,257373,876212,274211,430868,1177294,134977,120286,218431,189769,236344,280880,894316,214177,626547,923982,195808,476566,242680,288714,145747,289781,619157,483211,408096,438114,810074,178285,960839,303696,204009,170804,1236038,336873,194561,355661,347322,197752,105126,273229,197166,1216244,330859,206416,387857,336830,275835,261240,520531,328812,625091,1059459,624174,287754,556943,111342,132519,511074,156346,416890,470165,432898,191293,186625,228458,771232,499734,179416,153213,964386,382812,397621,403177,337358,225614,138663,846796,210628,391758,223109,832235,1021208,1048334,118080,118606,478530,835017,1033300,197394,1242175,843577,1090739,1032321,355812,907996,216386,838788,194411,1059452,873360,317527,176911,835363,1029987,647915,701121,400374,913899,532933,245059,584045,1092457,758846,365367,150575,965178,911734,824262,192709,516389,158672,503579,481954,258194,250176,271489,343202,535838,193191,1215832,631244,890874,652000,199021,305447,468551,766708,416627,133397,272472,1031383,107216,101749,266177,1055920,1089136,730825,282315,483622,312415,559947,191681,991727,1196711,522268,131511,115334,261752,294601,967128,114423,937658,912487,421033,259132,131516,547913,881579,1064103,1005767,286963,366458,900950,151260,499127,194904,140566,574109,332635,575523,152857,412666,427150,244544,108228,826936,959463,623370,182475,949491,997163,193240,906775,246348,438454,813114,201688,598886,389609,158032,230940,290496,373929,124755,534619,565442,354853,621094,352703,231629,301967,168956,502622,157729,874653,176404,120086,145257,976245,580829,572643,155862,750974,329506,1085639,490260,874591,1168652,952256,820248,645215,814129,222204,1062335,335332,999452,223786,1199118,114932,950963,748438,345624,231893,866133,561973,134163,169447,763292,184629,263042,428273,382265,274132,1011324,336247,543612,243039,287202,533708,498400,154132,336005,297752,266994,199835,397953,482580,540251,615324,199476,219353,465004,1038786,384542,412252,338288,109075,293771,123000,315018,154386,129415,116628,206965,118849,143498,189906,1070534,618337,148461,1009400,585456,810467,206676,961422,149797,671464,109220,126249,411724,386192,168285,937249,582720,280508,578902,110073,843580,959199,285365,1109294,332665,432687,228634,321135,801187,472947,270966,264679,203511,557131,911318,603020,563195,156295,498626,748107,837950,240409,158431,106174,867805,307158,525022,452425,168953,380236,386709,410824,423878,350354,479332,268558,202428,411159,412977,556703,180874,180008,159554,196577,364137,921601,193102,269567,749466,142030,1071254,524668,226985,475180,1102006,393439,244320,871913,376277,378965,226617,1178337,157503,592345,252820,237303,147287,192034,1207494,299109,437424,740464,347548,404670,443706,242143,209218,966276,202227,160153,1216036,176761,237190,153041,530688,159567,372811,123618,525646,102532,360586,332099,202045,567712,414417,549585,240616,264642,187121,853036,662382,391277,543870,989098,920841,410697,621108,195349,191185,252278,571184,507335,163920,620225,365816,354972,350864,543243,481872,117070,584255,222562,297997,203478,241327,302379,392506,107329,183666,229146,247287,106075,605700,314978,876780,240321,1056397,1086102,113096,506461,265463,306027,554920,231865,232723,816597,471357,415145,224368,480483,936000,606626,551987,102543,185742,1234893,1232407,864774,221464">
-            <label class="col-xs-1" for="threshold">Threshold</label><input id="threshold" value="0"
-                                                                            class="col-xs-11"
-                                                                            type="number" placeholder="Threshold value">
+            <hr>
+            <label for="customers" class="col-lg-1">Top K </label><input id="topk" class="col-xs-11"
+                                                                         type="number"
+                                                                         value="20"
+                                                                         placeholder="TOPK">
+            <hr>
+            <label for="customers" class="col-lg-1">Customers </label><input id="customers" class="col-xs-11"
+                                                                             type="text"
+                                                                             placeholder="Customers to filter on ">
+
+            <label for="time" class="col-xs-1">Time (days)</label><input class="col-lg-6" type="number" value="10"
+                                                                         id="time">
+            <label for="time_threshold" class="col-lg-2">Time tolerance</label><input id="time_threshold" value="2"
+                                                                                      type="text">
+            <hr class="col-xs-12">
+            <div class="col-xs-12">
+                <strong class="col-lg-12">Parameters</strong>
+                <label for="alpha" class="col-lg-1">Alpha</label><input id="alpha" value="0.33" class="col-lg-2"
+                                                                        type="number"
+                                                                        step="0.01">
+                <label for="beta" class="col-lg-1">Beta</label><input id="beta" value="0.33" class="col-lg-2"
+                                                                      type="number" step="0.01">
+                <label for="gamma" class="col-lg-1">Gamma</label><input id="gamma" value="0.33" class="col-lg-2"
+                                                                        type="number"
+                                                                        step="0.01">
+            </div>
+            <hr>
+            <hr class="col-lg-12">
+            <br>
             <label class="col-xs-3" for="Rtime">Execution time in ms</label><input id="Rtime"
                                                                                    type="text"
                                                                                    placeholder="Execution time in ms "
