@@ -60,7 +60,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matches = this.queryLength ? this.executeQueryVDTWorVED() : [];
         } else {
             matches = this.executeQuery();
-            $("#rawMatches").val(JSON.stringify(matches.map(({score, customers, points, timespan, smoothIteration}) => {
+            $("#rawMatches").val(JSON.stringify(matches.map(({customers,score, points, timespan, smoothIteration}) => {
                     return {
                         customers,
                         score,
@@ -117,6 +117,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
         if (customers.length == 0)
             customers = null
 
+        var startingTime = new Date();
         var queryCtx = {
             matches: [],
             notMatches: [],
@@ -136,23 +137,17 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             time: time,
             time_threshold: time_threshold
         };
-        var startingTime = new Date();
-        var series = DatasetAPI.dataset.series[0].values;
-        for (i = 0; i < 10; i++) {
-            DatasetAPI.dataset.series[0].values = series.splice(i, 10)
-            DatasetAPI.updateDataForDisplaySize()
-            for (queryCtx.snum = 0; queryCtx.snum < DatasetAPI.getDatasetsNum(); queryCtx.snum++) {
-                var smoothIterationsNum = DatasetAPI.getSmoothIterationsNum(queryCtx.snum);
-                if (smoothIterationsNum === 0) throw 'No data to query'; // should be controlled by the UI
-                for (queryCtx.smoothi = 0; queryCtx.smoothi < smoothIterationsNum; queryCtx.smoothi++) {
-                    queryCtx.dataPoints = DatasetAPI.getData(queryCtx.snum, queryCtx.smoothi);
+        for (queryCtx.snum = 0; queryCtx.snum < DatasetAPI.getDatasetsNum(); queryCtx.snum++) {
+            var smoothIterationsNum = DatasetAPI.getSmoothIterationsNum(queryCtx.snum);
+            if (smoothIterationsNum === 0) throw 'No data to query'; // should be controlled by the UI
+            for (queryCtx.smoothi = 0; queryCtx.smoothi < smoothIterationsNum; queryCtx.smoothi++) {
+                queryCtx.dataPoints = DatasetAPI.getData(queryCtx.snum, queryCtx.smoothi);
 
-                    queryCtx.A = (queryCtx.dataPoints[queryCtx.dataPoints.length - 1].origX - queryCtx.dataPoints[0].origX) / (3600 * 24 * 1000)
-                    queryCtx.B = Math.max.apply(null, queryCtx.dataPoints.map(e => {
-                        return e.metadata.customers.split(",").length
-                    }))
-                    this.executeQueryInSI(queryCtx);
-                }
+                queryCtx.A = (queryCtx.dataPoints[queryCtx.dataPoints.length - 1].origX - queryCtx.dataPoints[0].origX) / (3600 * 24 * 1000)
+                queryCtx.B = Math.max.apply(null, queryCtx.dataPoints.map(e => {
+                    return e.metadata.customers.split(",").length
+                }))
+                this.executeQueryInSI(queryCtx);
             }
         }
 
@@ -422,10 +417,11 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
         if (partialQuery) return {match: pointsMatchRes.match};
 
-        return {
+        let sectionsCustomers = matchedPts.map(e => JSON.parse("[" + e.metadata.customers + "]")).concat().flat(2);
+        let e = {
             snum: queryCtx.snum,
             smoothIteration: queryCtx.smoothi,
-            match: pointsMatchRes.match, //pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1),
+            match: pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1),
             size: matchSize,
             matchPos: matchPos,
             timespan: matchTimeSpan,
@@ -435,9 +431,12 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             sections: matchedSections,
             debugLines: pointsMatchRes.debugLines,
             errors: pointsMatchRes.errors,
-            customersRatio: pointsMatchRes.customersRatio,  // "/",
-            timeScore: pointsMatchRes.timeScore, // "/"
-        }
+            customers: sectionsCustomers,
+            customersRatio: "/",
+            timeScore: "/"
+        };
+        this.computeScore(e, queryCtx)
+        return e
     };
     this.computeScore = function (e, queryCtx) {
         switch (queryCtx.queryType) {
@@ -630,7 +629,6 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
         /* Then it scales all the sections and do the differences (the scale will not be too far from the average scale factor)*/
         for (si = 0; si < querySections.length; si++) {
-            
             var dataSect = {}, querySect = {};
             res = {sum: 0, num: 0};
 
@@ -711,34 +709,14 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             if (res.num > 0) pointDifferencesCost += res.sum / res.num;
         }
         // The result is defined as the average normalized difference between the curves
-        let match = pointDifferencesCost * Parameters.VALUE_DIFFERENCE_WEIGHT + rescalingCost * Parameters.RESCALING_COST_WEIGHT
-        if (queryCtx === undefined)
-            return {
-                match: match,
-                matchedPoints: matchedPoints,
-                customersRatio: "/",
-                timeScore: "/",
-                debugLines: debugLines, // for debug
-                errors: errors, // for debug
-                reduced: reduced, // for debugpointsMatchRes
-                expanded: expanded, // for debug,
-
-            };
-        console.log(queryCtx)
-        match = match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1)
-        e = {
-            match: match,
+        return {
+            match: pointDifferencesCost * Parameters.VALUE_DIFFERENCE_WEIGHT + rescalingCost * Parameters.RESCALING_COST_WEIGHT,
             matchedPoints: matchedPoints,
-            customersRatio: "/",
-            timeScore: "/",
             debugLines: debugLines, // for debug
             errors: errors, // for debug
             reduced: reduced, // for debugpointsMatchRes
-            expanded: expanded, // for debug,
-
+            expanded: expanded // for debug
         };
-        this.computeScore(e, queryCtx)
-        return e
     };
 
     this.sectionStartSubpartPoints = function (section, width) {
