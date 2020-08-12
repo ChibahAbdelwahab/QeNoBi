@@ -60,7 +60,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matches = this.queryLength ? this.executeQueryVDTWorVED() : [];
         } else {
             matches = this.executeQuery();
-            $("#rawMatches").val(JSON.stringify(matches.map(({customers,score, points, timespan, smoothIteration}) => {
+            $("#rawMatches").val(JSON.stringify(matches.map(({customers, score, points, timespan, smoothIteration}) => {
                     return {
                         customers,
                         score,
@@ -160,7 +160,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
 
     this.timeScoreFunction = function (x, t) {
-        var threshold = 2;
+        var threshold = $("#time_threshold");
         if (math.abs(x - t) <= threshold) return 0
         return 1 - 1 / math.abs(x - t)
     }
