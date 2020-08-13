@@ -160,7 +160,8 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
 
     this.timeScoreFunction = function (x, t) {
-        var threshold = $("#time_threshold");
+        var threshold = parseInt($("#time_threshold").val());
+        console.log(threshold, x, t, math.abs(x - t), math.abs(x - t) < threshold)
         if (math.abs(x - t) <= threshold) return 0
         return 1 - 1 / math.abs(x - t)
     }
