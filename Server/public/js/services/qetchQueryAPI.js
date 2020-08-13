@@ -150,7 +150,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                 this.executeQueryInSI(queryCtx);
             }
         }
-
+        queryCtx.matches = _.sortBy(queryCtx.matches, "score")
         var finishingTime = new Date();
         Qetch.DEBUG_LAST_EXECUTING_TIME = finishingTime - startingTime;
         // Report execution time
@@ -329,16 +329,15 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                     if (queryCtx.matches.length < queryCtx.topk) {
                         queryCtx.matches.push(matchValue);
                     } else {
-                        let sorted = _.sortBy(queryCtx.matches, "match")
-
+                        let sorted = _.sortBy(queryCtx.matches, "score")
                         if (_.last(sorted).score > matchValue.score) {
-                            sorted.splice(-1, 1)
+                            matchValue.id = sorted.splice(-1, 1)[0].id
                             queryCtx.matches = sorted
                             queryCtx.matches.push(matchValue)
                         }
 
                     }
-                } else if (queryCtx.matches[duplicateMatchIdx].match > matchValue.match) {
+                } else if (queryCtx.matches[duplicateMatchIdx].score > matchValue.score) {
                     matchValue.id = queryCtx.matches[duplicateMatchIdx].id; // we leave the old id for the match
                     queryCtx.matches[duplicateMatchIdx] = matchValue;
                 }
@@ -422,7 +421,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
         let e = {
             snum: queryCtx.snum,
             smoothIteration: queryCtx.smoothi,
-            match: pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1),
+            match: (pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1)).toPrecision(5),
             size: matchSize,
             matchPos: matchPos,
             timespan: matchTimeSpan,
