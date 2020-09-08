@@ -60,13 +60,17 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matches = this.queryLength ? this.executeQueryVDTWorVED() : [];
         } else {
             matches = this.executeQuery();
-            $("#rawMatches").val(JSON.stringify(matches.map(({customers, score, points, timespan, smoothIteration}) => {
+
+            $("#rawMatches").val(JSON.stringify(matches.map(({customers, score, points, timespan, smoothIteration, customersRatio, timeScore, match}) => {
                     return {
                         customers,
                         score,
                         date: new Date(points[0].origX),
                         duration: timespan.str,
                         smoothIteration,
+                        customersRatio,
+                        timeScore,
+                        match
                     }
                 }
             )))
@@ -421,7 +425,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
         let e = {
             snum: queryCtx.snum,
             smoothIteration: queryCtx.smoothi,
-            match: (pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1)).toPrecision(5),
+            match: (pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1)),
             size: matchSize,
             matchPos: matchPos,
             timespan: matchTimeSpan,
