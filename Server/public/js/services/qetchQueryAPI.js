@@ -147,6 +147,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             for (queryCtx.smoothi = 0; queryCtx.smoothi < smoothIterationsNum; queryCtx.smoothi++) {
                 queryCtx.dataPoints = DatasetAPI.getData(queryCtx.snum, queryCtx.smoothi);
 
+                // Parameters A and B are used to normalize the shape score
                 queryCtx.A = (queryCtx.dataPoints[queryCtx.dataPoints.length - 1].origX - queryCtx.dataPoints[0].origX) / (3600 * 24 * 1000)
                 queryCtx.B = Math.max.apply(null, queryCtx.dataPoints.map(e => {
                     return e.metadata.customers.split(",").length
@@ -455,23 +456,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                 e.score = queryCtx.alpha * e.match + queryCtx.beta * e.customersRatio
                 break;
             case 2:// console.log("Shape and customers and drift query")
-                if (queryCtx.customers.length === 0) break;
-                let index = e.points[0].origX;
-                let next = false;
-                let prev_customers = [];
-                for (i = queryCtx.dataPoints.length - 1; i >= 0; i--) {
-                    if (next) {
-                        prev_customers = JSON.parse("[" + queryCtx.dataPoints[i].metadata.customers + "]");
-                        break
-                    }
-                    if (queryCtx.dataPoints[i].origX == index) next = true
-                }
-                e.customers = e.customers.filter(ee => {
-                    return prev_customers.indexOf(ee) < 0
-                })
-                e.customersRatio = queryCtx.customers.filter(ee => {
-                    return e.customers.includes(ee)
-                }).length / queryCtx.customers.length
+
                 break;
             case 3:// console.log("Shape and customers and time query ")
                 var union = [...new Set([...e.customers, ...queryCtx.customers])];
