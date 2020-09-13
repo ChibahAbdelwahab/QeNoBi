@@ -205,7 +205,6 @@ Dataset.service('DatasetAPI', ['$rootScope', 'Data_Utils', 'Dataset_Resource', '
         if (this.dataset === null) {
             return;
         }
-
         // scale data so it will have the same aspect ratio of the user screen
         for (var i = 0; i < this.dataset.series.length; i++) {
             var xScale = this.dataset.xAxis.type === 'date' ?
@@ -223,7 +222,6 @@ Dataset.service('DatasetAPI', ['$rootScope', 'Data_Utils', 'Dataset_Resource', '
                     return new Qetch.Point(xScale(el.x), self.displaySize.height - yScale(el.y), el.x, el.y, el.metadata);
                 })
             ];
-
             // update smooth iterations
             Data_Utils.smoothData(this.data[i],
                 Parameters.SMOOTH_MINIMUM_SIGN_VARIATIONS_NUM,

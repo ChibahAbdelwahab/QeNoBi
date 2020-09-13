@@ -53,7 +53,7 @@ QetchQuery.controller('QetchQuery_PaperCtrl',
           setTimeout(function () {
             scrollContainer.scrollLeft($scope.historyHtmlContent.width());
           }, 10);
-        } else {showSuggestedPredefinedQuery
+        } else {$scope.showSuggestedPredefinedQuery()
           $scope.historyHtmlContent.detach();
         }
       };

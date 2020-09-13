@@ -60,12 +60,17 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matches = this.queryLength ? this.executeQueryVDTWorVED() : [];
         } else {
             matches = this.executeQuery();
-            $("#rawMatches").val(JSON.stringify(matches.map(({customers, points, timespan, smoothIteration}) => {
+
+            $("#rawMatches").val(JSON.stringify(matches.map(({customers, score, points, timespan, smoothIteration, customersRatio, timeScore, match}) => {
                     return {
                         customers,
+                        score,
                         date: new Date(points[0].origX),
                         duration: timespan.str,
                         smoothIteration,
+                        customersRatio,
+                        timeScore,
+                        match
                     }
                 }
             )))
@@ -104,6 +109,14 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
         // Get some input parameters
         // TODO this way does not respect the framework's guidelines
         let customers = JSON.parse("[" + $("#customers").val() + "]")
+        let alpha = parseFloat($("#alpha").val());
+        let beta = parseFloat($("#beta").val());
+        let gamma = parseFloat($("#gamma").val())
+        let time_threshold = parseFloat($("#time_threshold").val())
+        let time = parseInt($("#time").val())
+        let topk = parseInt($("#topk").val())
+
+
         let threshold = parseFloat($("#threshold").val())
         if (customers.length == 0)
             customers = null
@@ -113,6 +126,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matches: [],
             notMatches: [],
             snum: 0,
+            topk: topk,
             smoothi: 0,
             notOperator: this.notOperator,
             notOperatorVal: -1,
@@ -121,24 +135,42 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             queryType: parseInt($("#queryType").val()),
             customers: customers,
             threshold: threshold,
+            alpha: alpha,
+            beta: beta,
+            gamma: gamma,
+            time: time,
+            time_threshold: time_threshold
         };
         for (queryCtx.snum = 0; queryCtx.snum < DatasetAPI.getDatasetsNum(); queryCtx.snum++) {
             var smoothIterationsNum = DatasetAPI.getSmoothIterationsNum(queryCtx.snum);
             if (smoothIterationsNum === 0) throw 'No data to query'; // should be controlled by the UI
             for (queryCtx.smoothi = 0; queryCtx.smoothi < smoothIterationsNum; queryCtx.smoothi++) {
-                // for (queryCtx.smoothi = 3; queryCtx.smoothi <= 3; queryCtx.smoothi++) {
-                // for (queryCtx.smoothi = 0; queryCtx.smoothi <= 0; queryCtx.smoothi++) {
                 queryCtx.dataPoints = DatasetAPI.getData(queryCtx.snum, queryCtx.smoothi);
+
+                // Parameters A and B are used to normalize the shape score
+                queryCtx.A = (queryCtx.dataPoints[queryCtx.dataPoints.length - 1].origX - queryCtx.dataPoints[0].origX) / (3600 * 24 * 1000)
+                queryCtx.B = Math.max.apply(null, queryCtx.dataPoints.map(e => {
+                    return e.metadata.customers.split(",").length
+                }))
                 this.executeQueryInSI(queryCtx);
             }
         }
-
+        queryCtx.matches = _.sortBy(queryCtx.matches, "score")
         var finishingTime = new Date();
         Qetch.DEBUG_LAST_EXECUTING_TIME = finishingTime - startingTime;
         // Report execution time
         $("#Rtime").val(Qetch.DEBUG_LAST_EXECUTING_TIME)
         return this.notOperator >= 0 ? queryCtx.notMatches : queryCtx.matches;
     };
+
+
+    this.timeScoreFunction = function (x, t) {
+        var threshold = parseInt($("#time_threshold").val());
+        console.log(threshold, x, t, math.abs(x - t), math.abs(x - t) < threshold)
+        if (math.abs(x - t) <= threshold) return 0
+        return 1 - 1 / math.abs(x - t)
+    }
+
 
     /**
      * Execute the query in a particular smooth iteration
@@ -175,49 +207,6 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                 queryCtx.notOperatorVal = queryCtx.notOperator;
             }
             this.findNotMatches(dataSections, queryCtx);
-        }
-        // Filter according to drift type
-        switch (queryCtx.queryType) {
-            case 0:
-                console.log("// Shape query", queryCtx.smoothi)
-                break;
-            case 1:
-                console.log("// Shape and customers query", queryCtx.smoothi)
-                if (queryCtx.customers.length == 0) break;
-                queryCtx.matches.forEach(e => {
-                    e.customersRatio = queryCtx.customers.filter(ee => {
-                        return e.customers.includes(ee)
-                    }).length / queryCtx.customers.length
-                })
-                queryCtx.matches = queryCtx.matches.filter(e => {
-                    return e.customersRatio > queryCtx.threshold
-                })
-                break;
-            case 2:
-                console.log("Shape and customers and drift query", queryCtx.smoothi)
-                if (queryCtx.customers.length === 0) break;
-                queryCtx.matches.forEach(e => {
-                    let index = e.points[0].origX;
-                    let next = false;
-                    let prev_customers = [];
-                    for (i = queryCtx.dataPoints.length - 1; i >= 0; i--) {
-                        if (next) {
-                            prev_customers = JSON.parse("[" + queryCtx.dataPoints[i].metadata.customers + "]");
-                            break
-                        }
-                        if (queryCtx.dataPoints[i].origX == index) next = true
-                    }
-                    e.customers = e.customers.filter(ee => {
-                        return prev_customers.indexOf(ee) < 0
-                    })
-                    e.customersRatio = queryCtx.customers.filter(ee => {
-                        return e.customers.includes(ee)
-                    }).length / queryCtx.customers.length
-                })
-                queryCtx.matches = queryCtx.matches.filter(e => {
-                    return e.customersRatio > queryCtx.threshold
-                })
-                break;
         }
     };
 
@@ -342,8 +331,18 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                 var duplicateMatchIdx = Parameters.REMOVE_EQUAL_MATCHES ? this.searchEqualMatch(matchValue, queryCtx.matches) : -1;
                 if (duplicateMatchIdx === -1) {
                     matchValue.id = queryCtx.matches.length; // new id for the new match
-                    queryCtx.matches.push(matchValue);
-                } else if (queryCtx.matches[duplicateMatchIdx].match > matchValue.match) {
+                    if (queryCtx.matches.length < queryCtx.topk) {
+                        queryCtx.matches.push(matchValue);
+                    } else {
+                        let sorted = _.sortBy(queryCtx.matches, "score")
+                        if (_.last(sorted).score > matchValue.score) {
+                            matchValue.id = sorted.splice(-1, 1)[0].id
+                            queryCtx.matches = sorted
+                            queryCtx.matches.push(matchValue)
+                        }
+
+                    }
+                } else if (queryCtx.matches[duplicateMatchIdx].score > matchValue.score) {
                     matchValue.id = queryCtx.matches[duplicateMatchIdx].id; // we leave the old id for the match
                     queryCtx.matches[duplicateMatchIdx] = matchValue;
                 }
@@ -423,13 +422,11 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
         if (partialQuery) return {match: pointsMatchRes.match};
 
-        let sectionsCustomers = matchedPts.map(e => JSON.parse("[" + e.metadata.customers + "]")).concat();
-        sectionsCustomers = [...new Set([].concat.apply([], sectionsCustomers))];
-
-        return {
+        let sectionsCustomers = matchedPts.map(e => JSON.parse("[" + e.metadata.customers + "]")).concat().flat(2);
+        let e = {
             snum: queryCtx.snum,
             smoothIteration: queryCtx.smoothi,
-            match: pointsMatchRes.match,
+            match: (pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1)),
             size: matchSize,
             matchPos: matchPos,
             timespan: matchTimeSpan,
@@ -440,10 +437,41 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             debugLines: pointsMatchRes.debugLines,
             errors: pointsMatchRes.errors,
             customers: sectionsCustomers,
-            customersRatio: 1
+            customersRatio: "/",
+            timeScore: "/"
         };
+        this.computeScore(e, queryCtx)
+        return e
     };
+    this.computeScore = function (e, queryCtx) {
+        switch (queryCtx.queryType) {
+            case 0:// console.log("// Shape query")
+                e.score = e.match
+                break;
+            case 1:// console.log("// Shape and customers query")
+                var union = [...new Set([...e.customers, ...queryCtx.customers])];
+                e.customersRatio = 1 - queryCtx.customers.filter(ee => {
+                    return e.customers.includes(ee)
+                }).length / union.length
+                e.score = queryCtx.alpha * e.match + queryCtx.beta * e.customersRatio
+                break;
+            case 2:// console.log("Shape and customers and drift query")
 
+                break;
+            case 3:// console.log("Shape and customers and time query ")
+                var union = [...new Set([...e.customers, ...queryCtx.customers])];
+                e.customersRatio = 1 - queryCtx.customers.filter(ee => {
+                    return e.customers.includes(ee)
+                }).length / union.length
+                e.timeScore = this.timeScoreFunction(e.timespan.value / (3600 * 24 * 1000), queryCtx.time)
+                e.score = queryCtx.alpha * e.match + queryCtx.beta * e.customersRatio + queryCtx.gamma * e.timeScore
+                break;
+            case 4:// console.log("// Shape and time query")
+                e.timeScore = this.timeScoreFunction(e.timespan.value / (3600 * 24 * 1000), queryCtx.time)
+                e.score = queryCtx.alpha * e.match + queryCtx.gamma * e.timeScore
+                break;
+        }
+    }
     /* Searches for the query compatibility. Returns false in case the query is not compatible to the given data. */
     this.areCompatibleSections = function (querySections, dataSections, checkLength) {
         if (querySections.length != dataSections.length) {
