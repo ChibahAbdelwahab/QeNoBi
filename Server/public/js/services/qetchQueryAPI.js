@@ -141,12 +141,14 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             time: time,
             time_threshold: time_threshold
         };
+        let smoothed_data = [];
         for (queryCtx.snum = 0; queryCtx.snum < DatasetAPI.getDatasetsNum(); queryCtx.snum++) {
             var smoothIterationsNum = DatasetAPI.getSmoothIterationsNum(queryCtx.snum);
             if (smoothIterationsNum === 0) throw 'No data to query'; // should be controlled by the UI
             for (queryCtx.smoothi = 0; queryCtx.smoothi < smoothIterationsNum; queryCtx.smoothi++) {
                 queryCtx.dataPoints = DatasetAPI.getData(queryCtx.snum, queryCtx.smoothi);
-
+                /// logging purp
+                smoothed_data.push(queryCtx.dataPoints)
                 // Parameters A and B are used to normalize the shape score
                 queryCtx.A = (queryCtx.dataPoints[queryCtx.dataPoints.length - 1].origX - queryCtx.dataPoints[0].origX) / (3600 * 24 * 1000)
                 queryCtx.B = Math.max.apply(null, queryCtx.dataPoints.map(e => {
@@ -154,7 +156,9 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                 }))
                 this.executeQueryInSI(queryCtx);
             }
+
         }
+        window.smoothed_data = smoothed_data
         queryCtx.matches = _.sortBy(queryCtx.matches, "score")
         var finishingTime = new Date();
         Qetch.DEBUG_LAST_EXECUTING_TIME = finishingTime - startingTime;
