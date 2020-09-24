@@ -147,16 +147,14 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             if (smoothIterationsNum === 0) throw 'No data to query'; // should be controlled by the UI
             for (queryCtx.smoothi = 0; queryCtx.smoothi < smoothIterationsNum; queryCtx.smoothi++) {
                 queryCtx.dataPoints = DatasetAPI.getData(queryCtx.snum, queryCtx.smoothi);
-                /// logging purp
-                smoothed_data.push(queryCtx.dataPoints)
-                // Parameters A and B are used to normalize the shape score
                 queryCtx.A = (queryCtx.dataPoints[queryCtx.dataPoints.length - 1].origX - queryCtx.dataPoints[0].origX) / (3600 * 24 * 1000)
                 queryCtx.B = Math.max.apply(null, queryCtx.dataPoints.map(e => {
                     return e.metadata.customers.split(",").length
                 }))
+                smoothed_data.push(queryCtx.dataPoints)
+                queryCtx.shapeNormalize = Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1
                 this.executeQueryInSI(queryCtx);
             }
-
         }
         window.smoothed_data = smoothed_data
         queryCtx.matches = _.sortBy(queryCtx.matches, "score")
@@ -429,7 +427,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
         let e = {
             snum: queryCtx.snum,
             smoothIteration: queryCtx.smoothi,
-            match: (pointsMatchRes.match / (Math.pow((Math.log(queryCtx.A)), 2) + Math.pow((Math.log(queryCtx.B)), 2) + 1)),
+            match: pointsMatchRes.match / queryCtx.shapeNormalize,
             size: matchSize,
             matchPos: matchPos,
             timespan: matchTimeSpan,
