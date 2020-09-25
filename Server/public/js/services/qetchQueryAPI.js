@@ -328,7 +328,7 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
             matchValue = this.calculateMatch(dataSectsForQ, newQSections, queryCtx, false);
             let sorted = _.sortBy(queryCtx.matches, "score")
 
-            if (matchValue !== null && (queryCtx.matches.length == 0 || _.last(sorted).score > matchValue.score)) {
+            if (matchValue !== null && (queryCtx.matches.length < queryCtx.topk || _.last(sorted).score > matchValue.score)) {
                 // Keep only one (best) match if the same area is selected in different smooth iterations
                 var duplicateMatchIdx = Parameters.REMOVE_EQUAL_MATCHES ? this.searchEqualMatch(matchValue, queryCtx.matches) : -1;
                 if (duplicateMatchIdx === -1) {
