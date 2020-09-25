@@ -326,8 +326,9 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
         if (currSect == lastQuerySect &&
             (currSect.next.length === 0 || !currSect.next[0].size || currSect.next[0].size == currSect.next[0].times)) {
             matchValue = this.calculateMatch(dataSectsForQ, newQSections, queryCtx, false);
-            if (matchValue !== null) {
+            let sorted = _.sortBy(queryCtx.matches, "score")
 
+            if (matchValue !== null && (queryCtx.matches.length == 0 || _.last(sorted).score > matchValue.score)) {
                 // Keep only one (best) match if the same area is selected in different smooth iterations
                 var duplicateMatchIdx = Parameters.REMOVE_EQUAL_MATCHES ? this.searchEqualMatch(matchValue, queryCtx.matches) : -1;
                 if (duplicateMatchIdx === -1) {
@@ -335,13 +336,9 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
                     if (queryCtx.matches.length < queryCtx.topk) {
                         queryCtx.matches.push(matchValue);
                     } else {
-                        let sorted = _.sortBy(queryCtx.matches, "score")
-                        if (_.last(sorted).score > matchValue.score) {
-                            matchValue.id = sorted.splice(-1, 1)[0].id
-                            queryCtx.matches = sorted
-                            queryCtx.matches.push(matchValue)
-                        }
-
+                        matchValue.id = sorted.splice(-1, 1)[0].id
+                        queryCtx.matches = sorted
+                        queryCtx.matches.push(matchValue)
                     }
                 } else if (queryCtx.matches[duplicateMatchIdx].score > matchValue.score) {
                     matchValue.id = queryCtx.matches[duplicateMatchIdx].id; // we leave the old id for the match
@@ -350,7 +347,6 @@ QetchQuery.service('QetchQuery_QueryAPI', ['$rootScope', 'DatasetAPI', 'Data_Uti
 
             }
         }
-
         if (currSect.next.length >= 1) {
             var backLink = false;
             for (i = currSect.next.length - 1; i >= 0; i--) { // iterate repetitions and after the straight link
