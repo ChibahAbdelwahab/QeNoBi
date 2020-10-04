@@ -50,9 +50,7 @@ class LcmHandler:
         split_name = split_name.split("/")[-1]  # remove temp folder from name
         output["period"] = split_name.split("_")[0]
         output["property_values"] = "_".join(split_name.split("_")[1:]).split("#")[0]
-        print("_".join(split_name.split("_")[1:]).split("#")[0])
         output.columns = ["customer_id", "support", "itemset", "period", "property_values"]
-        print("###############",f'{TMP_FOLDER}/index/{split_name}')
         indexes = pd.read_csv(f'{TMP_FOLDER}/index/{split_name}', header=None)[0].to_dict()
         output["customer_id"] = output["customer_id"].fillna("").map(lambda x: [indexes[int(i)] for i in x.split()])
         return output
@@ -81,13 +79,17 @@ class LcmHandler:
             command = f"""./ {LCM_EXECUTABLE} C_QI - l {itemsets_size[0]} "{split_name}" {support} -"""
         else:
             command = f"""{LCM_EXECUTABLE} C_QI -l {itemsets_size[0]} -u {itemsets_size[1]} "{split_name}" {support} -"""
-        result = subprocess.check_output(command, shell=True).decode(sys.stdout.encoding).split('\n')
-        # os.remove(split_name)
+        try:
+            result = subprocess.check_output(command, shell=True).decode(sys.stdout.encoding).split('\n')
+        except subprocess.CalledProcessError:
+            print("No itemset", split_name)
+            return
+            # os.remove(split_name)
         if "there is no frequent item" in str(result) or result == []:
             print("No itemset", split_name)
             return
+
         # TODO Optimize bottleneck
-        print("Output to ", output_file)
         with open(output_file, "a+") as file:
             self.reformat_output(result, split_name).to_csv(file, header=False, index=None, mode="a+")
         return split_name
@@ -118,7 +120,7 @@ class LcmHandler:
         print(f'---| Average: {len(a) / total}')
         print(" ")
 
-    def read_lcm_output_total(self, input_name):
+    def read_lcm_output(self, input_name):
         """Read and restructure LCM output file,rename columns output a df """
         file = f'{RESULTS_FOLDER}/{input_name}'
         df = pd.read_csv(file, header=None)
