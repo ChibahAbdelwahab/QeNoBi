@@ -145,4 +145,5 @@ cython_debug/
 *.json
 
 # Results folders
-/output/
+/output/tmp
+/output/*/*.out
