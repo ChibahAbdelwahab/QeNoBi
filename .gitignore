@@ -144,6 +144,6 @@ cython_debug/
 *.csv
 *.json
 
-# Results folders
-/output/tmp
-/output/*/*.out
+# Results folders and files
+/output/tmp/*
+*.out
