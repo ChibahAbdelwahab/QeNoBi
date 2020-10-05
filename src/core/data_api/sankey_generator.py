@@ -1,12 +1,14 @@
 import json
 from itertools import groupby, product
+from shutil import copyfile
 
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, MultiLabelBinarizer
 
 from core.data_api.dataset_handler import DatasetHandler
-from settings.settings import STATS_FOLDER, LINKS_FOLDER, GROUPS_FOLDER, GROUPS_DEMOGRAPHICS
+from settings.settings import STATS_FOLDER, LINKS_FOLDER, GROUPS_FOLDER, GROUPS_DEMOGRAPHICS, SANKEY_TEMPLATE, \
+    LABELED_LINKS_FOLDER
 from tools.dataset_tools import get_items_descriptions
 from tools.demographics import extract_demographics
 from tools.lcm_tools import read_lcm_output
@@ -37,17 +39,20 @@ class SankeyGenerator:
 
         file = f'{LINKS_FOLDER}/{input_file}'
         mlb = MultiLabelBinarizer(sparse_output=True)
-        _df = mlb.fit_transform(df.user_ids.tolist()).astype(bool)
-        _df = pd.DataFrame(_df.toarray(), columns=mlb.classes_)
+        df_users_apparition = mlb.fit_transform(df.user_ids.tolist()).astype(bool)
+        df_users_apparition = pd.DataFrame(df_users_apparition.toarray(), columns=mlb.classes_)
 
-        e = _df.sum()
-        _df = _df[e[e > user_apparition_threshold].index]
-        _df = _df.T.apply(lambda x: np.where(x)[0], axis=1)
-        e = _df.to_frame()[0].apply(lambda x: list(list(z) for idx, z in groupby(x, lambda y: df.iloc[y].period)))
-        e = e[e.apply(lambda x: len(x)) > user_nunique_periods_threshold]
+        df_stats = df_users_apparition.sum()
+        df_users_apparition = df_users_apparition[df_stats[df_stats > user_apparition_threshold].index]
+        df_users_apparition = df_users_apparition.T.apply(lambda x: np.where(x)[0], axis=1)
+        df_stats = df_users_apparition.to_frame()[0].apply(
+            lambda x: list(list(z) for idx, z in groupby(x, lambda y: df.iloc[y].period))
+        )
+        df_stats = df_stats[df_stats.apply(lambda x: len(x)) > user_nunique_periods_threshold]
 
         res = []
-        e.to_frame().reset_index().apply(lambda x: [res.append(i) for i in self.make_links(x[0], x["index"])], axis=1)
+        df_stats.to_frame().reset_index().apply(lambda x: [res.append(i) for i in self.make_links(x[0], x["index"])],
+                                                axis=1)
         links = pd.DataFrame(res)
 
         links.columns = ["source", "target", "user_id"]
@@ -68,9 +73,9 @@ class SankeyGenerator:
             df_groups[demographics] = df_groups.property_values.str.split("_", expand=True)
 
         # Encoding items to their initial ID + adding names
+        # TODO remove dependency to DatasetHandler
         self.dh = DatasetHandler()
         items = self.dh.get_items()
-        df_groups.to_csv("test_csv.csv")
         df_groups["itemset_name"] = df_groups["itemsets"].apply(
             lambda x: get_items_descriptions(x, items))
         df_groups.to_csv(file)
@@ -85,4 +90,31 @@ class SankeyGenerator:
         with open(file, 'w') as outfile:
             json.dump(stats, outfile)
 
+        self.make_labeled_links(input_file, links, df_groups)
         print("Done", input_file)
+
+    def generate_sankey_file(self, input_name):
+        destination_file = SANKEY_TEMPLATE.replace("template", input_name.replace(".out", ""))
+        copyfile(SANKEY_TEMPLATE, destination_file)
+        return destination_file
+
+    def make_labeled_links(self, file_name, links, groups):
+        links["user_id"] = links["user_id"].apply(lambda x: [int(i) for i in str(x).split(",")])
+        links_extra = links.merge(groups[["user_ids"]], left_on="source", right_index=True) \
+            .merge(groups[["user_ids"]], left_on="target", right_index=True)
+        links_extra.columns = ["source", "target", "intersection", "source_users", "target_users"]
+
+        def label_groups(x):
+            #     return random.choice(["1","2","3",4"])
+            print(len(x["source_users"]) - len(x["intersection"]), 0.50 * len(x["source_users"]))
+            if len(x["source_users"]) - len(x["intersection"]) <= 0.5 * len(x["source_users"]):
+                if len(x["source_users"]) == len(x["target_users"]):
+                    return "S"  # 'stable'
+                return "G"  # "grows"
+            if len(x["target_users"]) == len(x["intersection"]):
+                return "Su"  # "subset"
+            return "SG"  # "subset_grows"
+
+        links_extra["label"] = links_extra.apply(label_groups, axis=1)
+        links_extra.columns = ['source', 'target', 'user_id', 'source_users', 'target_users', 'label']
+        links_extra[["source", "target", "user_id", "label"]].to_csv(f"{LABELED_LINKS_FOLDER}/{file_name}", index=None)

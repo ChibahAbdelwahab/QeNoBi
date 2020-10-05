@@ -8,8 +8,11 @@ LCM_EXECUTABLE = os.path.abspath("../bin/lcm")
 RESULTS_FOLDER = os.path.abspath("../output/results")
 STATS_FOLDER = os.path.abspath('../output/plots/stats')
 LINKS_FOLDER = os.path.abspath('../output/plots/links')
+LABELED_LINKS_FOLDER = os.path.abspath('../output/plots/labeled_links')
 GROUPS_FOLDER = os.path.abspath('../output/plots/groups')
+SANKEY_FOLDER = os.path.abspath('../output/plots/html')
 
+SANKEY_TEMPLATE = f"{SANKEY_FOLDER}/template.html"
 # Db requirements
 TRANSACTIONS_REQUIRED_FIELDS = ['article_id', 'customer_id', 'station_id', 'transaction_date', 'transaction_id']
 
