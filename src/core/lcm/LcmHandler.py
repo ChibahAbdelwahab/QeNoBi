@@ -1,10 +1,10 @@
 import os
 import subprocess
 import sys
+from functools import partial
+from multiprocessing import Pool
 
 import pandas as pd
-from multiprocessing import Pool
-from functools import partial
 
 from src.settings.settings import NB_THREADS, TMP_FOLDER, LCM_EXECUTABLE, RESULTS_FOLDER
 
@@ -119,15 +119,6 @@ class LcmHandler:
         print(f'---| #split having groups: {len(a)}')
         print(f'---| Average: {len(a) / total}')
         print(" ")
-
-    def read_lcm_output(self, input_name):
-        """Read and restructure LCM output file,rename columns output a df """
-        file = f'{RESULTS_FOLDER}/{input_name}'
-        df = pd.read_csv(file, header=None)
-        df.columns = ["user_ids", "support", "itemsets", "period", "property_values"]
-        df["period"] = pd.to_datetime(df["period"])
-        df["user_ids"] = df.user_ids.apply(lambda x: [int(z.replace('"', "")) for z in x[1:-1].split(",") if z != ""])
-        return df
 
     def format_output_name(self, frequency, min_support, itemsets_size, properties):
         return f'{RESULTS_FOLDER}/{frequency}-{min_support}-[{itemsets_size[0]}-{itemsets_size[1]}]-[{",".join(str(i) for i in properties)}]-lcm.out'

@@ -1,12 +1,11 @@
-import json
-import os
-
 import pandas as pd
-from sklearn import preprocessing
 from sqlalchemy import create_engine
 
 
 class DatasetHandler:
+    def __init__(self):
+        self.engine = create_engine("postgresql://miningAgent:@localhost/QeNoBi")
+
     def split_dataset(input_file, frequency, dataset_filter):
         """Split initial dataset to multiple files according to frequency
 
@@ -30,13 +29,15 @@ class DatasetHandler:
 
     def get_data(self):  # TODO use ORM instead of queries
         """ Load transaction from Database"""
-        engine = create_engine("postgresql://miningAgent:@localhost/QeNoBi")
         query = """
         Select * from "transactions" t 
         join "customers" c on c."customer_id"=t."customer_id"
         join "stations"  s on t."station_id"=s."station_id"
         """
-        df = pd.read_sql(query, con=engine).drop_duplicates()
+        df = pd.read_sql(query, con=self.engine).drop_duplicates()
         df.index = pd.to_datetime(df.transaction_date)
         df = df.loc[:, ~df.columns.duplicated()]
         return df
+
+    def get_items(self):
+        return pd.read_sql_table("items", con=self.engine).set_index("article_id")

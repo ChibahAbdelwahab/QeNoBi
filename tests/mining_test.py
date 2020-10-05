@@ -5,6 +5,7 @@ import pytest
 
 from core.data_api.dataset_handler import DatasetHandler
 from core.lcm.LcmHandler import LcmHandler
+from tools.lcm_tools import read_lcm_output
 
 
 @pytest.mark.parametrize("frequency, min_support, properties,itemsets_size",
@@ -51,7 +52,7 @@ def test_run_multi_thread_lcm(frequency, min_support, properties, itemsets_size)
     output_file = lh.format_output_name(frequency, min_support, itemsets_size, properties)
     lh.multithread_lcm(df, frequency, min_support, itemsets_size, properties, output_file)
     assert os.path.isfile(output_file)
-    lh.read_lcm_output(output_file.split("/")[-1])
+    read_lcm_output(output_file.split("/")[-1])
 
 
 if __name__ == '__main__':
