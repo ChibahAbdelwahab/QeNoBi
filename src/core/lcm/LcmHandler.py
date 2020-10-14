@@ -13,7 +13,7 @@ class LcmHandler:
     """ This Class gives an api to use LCM algorithm """
 
     def dataset_property_split(self, df, frequency, properties, min_support, groupby_property="customer_id",
-                               itemset_property="article_id", ):
+                               itemset_property="item_id", ):
         """
         Split dataset according to the given properties
         :param df: Dataframe

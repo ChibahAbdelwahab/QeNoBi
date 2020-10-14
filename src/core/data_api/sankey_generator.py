@@ -76,7 +76,8 @@ class SankeyGenerator:
         # TODO remove dependency to DatasetHandler
         self.dh = DatasetHandler()
         items = self.dh.get_items()
-        df_groups["itemset_name"] = df_groups["itemsets"].apply(
+
+        df_groups["itemset_name"] = df_groups["itemsets"].astype(str).apply(
             lambda x: get_items_descriptions(x, items))
         df_groups.to_csv(file)
 

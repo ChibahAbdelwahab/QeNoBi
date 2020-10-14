@@ -40,4 +40,4 @@ class DatasetHandler:
         return df
 
     def get_items(self):
-        return pd.read_sql_table("items", con=self.engine).set_index("article_id")
+        return pd.read_sql_table("items", con=self.engine).set_index("item_id")
