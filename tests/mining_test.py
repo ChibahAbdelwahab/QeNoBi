@@ -44,15 +44,18 @@ def test_run_lcm(frequency, min_support, properties, itemsets_size):
 @pytest.mark.parametrize("frequency, min_support, properties,itemsets_size",
                          [("M", 30, ["sex"], [2, 10]),
                           ])
-def test_run_multi_thread_lcm(frequency, min_support, properties, itemsets_size):
-    dh = DatasetHandler()
-    lh = LcmHandler()
-    df = dh.get_data()
-    output_file = lh.format_output_name(frequency, min_support, itemsets_size, properties)
-    lh.multithread_lcm(df, frequency, min_support, itemsets_size, properties, output_file)
-    assert os.path.isfile(output_file)
-    print(output_file)
-    read_lcm_output(output_file.split("/")[-1])
+def test_run_multi_thread_lcm(go real
+
+
+time, min_support, properties, itemsets_size):
+dh = DatasetHandler()
+lh = LcmHandler()
+df = dh.get_data()
+output_file = lh.format_output_name(frequency, min_support, itemsets_size, properties)
+lh.multithread_lcm(df, frequency, min_support, itemsets_size, properties, output_file)
+assert os.path.isfile(output_file)
+print(output_file)
+read_lcm_output(output_file.split("/")[-1])
 
 
 if __name__ == '__main__':
