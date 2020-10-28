@@ -1,3 +1,4 @@
+import cProfile
 import json
 from itertools import groupby, product
 from shutil import copyfile
@@ -12,6 +13,18 @@ from settings.settings import STATS_FOLDER, LINKS_FOLDER, GROUPS_FOLDER, GROUPS_
 from tools.dataset_tools import get_items_descriptions
 from tools.demographics import extract_demographics
 from tools.lcm_tools import read_lcm_output
+from tools.sankey_tools import label_groups
+
+
+def profileit(func):
+    def wrapper(*args, **kwargs):
+        datafn = func.__name__ + ".profile"  # Name the data file sensibly
+        prof = cProfile.Profile()
+        retval = prof.runcall(func, *args, **kwargs)
+        prof.dump_stats(datafn)
+        return retval
+
+    return wrapper
 
 
 class SankeyGenerator:
@@ -30,6 +43,7 @@ class SankeyGenerator:
             yield from product(prev, i, [index])
             prev = i
 
+    @profileit
     def sankey_preprocessing(self, input_file, user_apparition_threshold=0,
                              user_nunique_periods_threshold=3, keep_all_groups_in_periods=[]):
 
@@ -56,8 +70,9 @@ class SankeyGenerator:
         links = pd.DataFrame(res)
 
         links.columns = ["source", "target", "user_id"]
-        links.groupby(["source", "target"])["user_id"].apply(lambda x: ','.join(str(i) for i in x)).to_frame().to_csv(
-            file)
+        links = links.groupby(["source", "target"])["user_id"].apply(
+            lambda x: ','.join(str(i) for i in x)).reset_index()
+        links.to_csv(file)
 
         # Keep groups appearing in at least one week
         file = f'{GROUPS_FOLDER}/{input_file}'
@@ -78,7 +93,7 @@ class SankeyGenerator:
         items = self.dh.get_items()
 
         df_groups["itemset_name"] = df_groups["itemsets"].astype(str).apply(
-            lambda x: get_items_descriptions(x, items))
+            lambda x: json.dumps(get_items_descriptions(x, items)))
         df_groups.to_csv(file)
 
         # Groups demographics stats
@@ -94,28 +109,16 @@ class SankeyGenerator:
         self.make_labeled_links(input_file, links, df_groups)
         print("Done", input_file)
 
-    def generate_sankey_file(self, input_name):
-        destination_file = SANKEY_TEMPLATE.replace("template", input_name.replace(".out", ""))
-        copyfile(SANKEY_TEMPLATE, destination_file)
-        return destination_file
-
     def make_labeled_links(self, file_name, links, groups):
         links["user_id"] = links["user_id"].apply(lambda x: [int(i) for i in str(x).split(",")])
         links_extra = links.merge(groups[["user_ids"]], left_on="source", right_index=True) \
             .merge(groups[["user_ids"]], left_on="target", right_index=True)
         links_extra.columns = ["source", "target", "intersection", "source_users", "target_users"]
-
-        def label_groups(x):
-            #     return random.choice(["1","2","3",4"])
-            print(len(x["source_users"]) - len(x["intersection"]), 0.50 * len(x["source_users"]))
-            if len(x["source_users"]) - len(x["intersection"]) <= 0.5 * len(x["source_users"]):
-                if len(x["source_users"]) == len(x["target_users"]):
-                    return "S"  # 'stable'
-                return "G"  # "grows"
-            if len(x["target_users"]) == len(x["intersection"]):
-                return "Su"  # "subset"
-            return "SG"  # "subset_grows"
-
         links_extra["label"] = links_extra.apply(label_groups, axis=1)
         links_extra.columns = ['source', 'target', 'user_id', 'source_users', 'target_users', 'label']
         links_extra[["source", "target", "user_id", "label"]].to_csv(f"{LABELED_LINKS_FOLDER}/{file_name}", index=None)
+
+    def generate_sankey_file(self, input_name):
+        destination_file = SANKEY_TEMPLATE.replace("template", input_name.replace(".out", ""))
+        copyfile(SANKEY_TEMPLATE, destination_file)
+        return destination_file

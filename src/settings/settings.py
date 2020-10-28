@@ -1,6 +1,6 @@
 import os
 
-NB_THREADS = 1
+NB_THREADS = 8
 
 # Path
 OUTPUT_FOLDER = '../output'

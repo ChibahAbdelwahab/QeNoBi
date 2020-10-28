@@ -61796,7 +61796,8 @@
             });
 
             if (node) {
-                var node_users = JSON.parse(node.getModel().option["user_ids"])
+                var node_users = node.getModel().option["user_ids"]
+                console.log(typeof node_users)
                 fadeInItem$1(node, nodeOpacityPath$1);
                 var focusNodeAdj = itemModel.get('focusNodeAdjacency');
                 if (focusNodeAdj === 'outEdges') {
@@ -61822,9 +61823,7 @@
                         fadeInItem$1(edge.node2, nodeOpacityPath$1);
                     });
                     graph.eachEdge(function (edge) {
-                        var user_ids = JSON.parse(edge.getModel().option["user_id"][0])
-                        console.log(node.getModel().option["user_ids"])
-                        console.log("THe users", typeof user_ids, typeof node_users)
+                        var user_ids = edge.getModel().option["user_id"]
                         if (node_users.filter(x => user_ids.includes(x)).length == 0) {
                             return;
                         }

@@ -18,20 +18,21 @@
 
 </div>
 <div>
+
     <div style="display: flex;flex-direction: row;margin-bottom: 10px">
-        <div style="background:#E8505B;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
-        <div>Grows</div>
+        <div style="background:#e63946;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
+        <div>Merges</div>
     </div>
     <div style="display: flex;flex-direction: row;margin-bottom: 10px">
-        <div style="background:#14B1AB;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
-        <div>Subsets</div>
+        <div style="background:#1d3557;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
+        <div>Splits</div>
     </div>
     <div style="display: flex;flex-direction: row;margin-bottom: 10px">
-        <div style="background:#F3ECC2;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
+        <div style="background:#a8dadc;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
         <div>Changes</div>
     </div>
     <div style="display: flex;flex-direction: row;margin-bottom: 10px">
-        <div style="background:#F9D56E;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
+        <div style="background:#457b9d;width: 20px;height: 20px;border-radius: 20px;margin-right:10px"></div>
         <div>Remains</div>
     </div>
 </div>
@@ -40,7 +41,7 @@
     <div id="groups_demographics" style="width: 50%;height:100vh;display:inline-block;white-space:normal"></div>
 </div>
 <script type="text/javascript">
-    colors_list = ["#E8505B", , "#14B1AB", "#F3ECC2", "#F9D56E"]
+    colors_list = ["#e63946", "#1d3557", "#a8dadc", "#457b9d"]
     file_name = decodeURI(window.location.pathname.split("/").pop().replace(".html", ".out"))
 
     var filters = {"DEPARTEMENT": [], "SEX": [], "AGE": [], "STATION_MGT_TYPE": []}
@@ -48,15 +49,16 @@
 
     d3.csv('../labeled_links/' + file_name,
         function (row) {
-            var list = ["Grows", "Subset", "Changes"]
+            console.log(row)
+            var list = {"M": 0, "S": 1, "SG": 3,}
             return {
                 source: row.source,
                 target: row.target,
                 user_id: JSON.parse(row.user_id),
-                value: JSON.parse(row.user_id).length,
+                value: Math.max(1, JSON.parse(row.user_id).length - 3),
                 label: row.label,
                 lineStyle: {
-                    color: colors_list[row.label % 3],
+                    color: colors_list[list[row.label]],
                     opacity: 1,
                 },
             };
@@ -66,12 +68,13 @@
             let labels = []
             d3.csv('../groups/' + file_name,
                 function (row) {
+
                     row["name"] = row[""]
-                    row["size"] = parseInt(row.size)
+                    row["size"] = JSON.parse(row.user_ids).length + 3
                     row["depth"] = row.depth * 100000
                     labels[row["depth"]] = row["name"]
                     row.user_ids = JSON.parse(row.user_ids)
-                    row.itemset_name = JSON.parse(row.itemset_name)
+                    row.itemset_name = row.itemset_name
                     row["label"] = {
                         normal: {
                             // rotate: 90,
@@ -143,7 +146,7 @@
             focusNodeAdjacency: 'allEdges',
             nodeAlign: "center",
             layout: "none",
-            layoutIterations: 100,
+            layoutIterations: 1,
             // focusNodeAdjacency: 'false',
             data: data,
             links: links,
@@ -160,7 +163,7 @@
         var option = {
             tooltip: {
                 align: "bottom",
-                itemGap: 1,
+                itemGap: 100,
                 padding: [0, 0, 0, 0],
                 formatter: function (x) {
                     if (x.dataType == "node") {

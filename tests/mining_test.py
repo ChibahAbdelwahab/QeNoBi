@@ -42,7 +42,7 @@ from tools.lcm_tools import read_lcm_output
 
 
 @pytest.mark.parametrize("frequency, min_support, properties,itemsets_size",
-                         [("M", 30, ["sex"], [2, 10]),
+                         [("3M", 2, ["sex"], [2, 100]),
                           ])
 def test_run_multi_thread_lcm(frequency, min_support, properties, itemsets_size):
     dh = DatasetHandler()
