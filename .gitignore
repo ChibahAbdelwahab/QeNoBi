@@ -267,3 +267,11 @@ media/
 # !**/migrations
 # !**/migrations/__init__.py
 
+
+.idea/
+
+MiningGroupsBehaviorFWK/output/tmp/index/
+
+MiningGroupsBehaviorFWK/output/tmp/splits/
+
+*.html
