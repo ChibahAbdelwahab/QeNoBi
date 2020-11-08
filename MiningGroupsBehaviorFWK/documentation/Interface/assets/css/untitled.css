@@ -1,0 +1,31 @@
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    height: 400px;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
+}
+
+.active {
+    color: #F00;
+}
+
