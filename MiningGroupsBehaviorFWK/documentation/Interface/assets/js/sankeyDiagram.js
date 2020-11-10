@@ -791,7 +791,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -807,7 +807,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -821,7 +821,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -835,7 +835,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -856,7 +856,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -869,7 +869,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -882,7 +882,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -896,7 +896,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -909,7 +909,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -927,7 +927,7 @@ sankey = {
             "label": "S",
             "lineStyle": {
                 "color": "#1d3557",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -940,7 +940,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -953,7 +953,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -966,7 +966,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -983,7 +983,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1005,7 +1005,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1032,10 +1032,10 @@ sankey = {
                 482512
             ],
             "value": 15,
-            "label": "SG",
+            "label": "M",
             "lineStyle": {
-                "color": "#457b9d",
-                "opacity": 0.6
+                "color": "#e63946",
+                "opacity": 1
             }
         },
         {
@@ -1053,7 +1053,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1066,7 +1066,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1084,7 +1084,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1097,7 +1097,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1110,7 +1110,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1123,7 +1123,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1137,7 +1137,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1150,7 +1150,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1165,7 +1165,7 @@ sankey = {
             "label": "S",
             "lineStyle": {
                 "color": "#1d3557",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1178,7 +1178,7 @@ sankey = {
             "label": "S",
             "lineStyle": {
                 "color": "#1d3557",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1191,7 +1191,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1204,7 +1204,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1222,7 +1222,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1237,7 +1237,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1250,7 +1250,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1272,7 +1272,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1287,7 +1287,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1301,7 +1301,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1314,7 +1314,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1329,7 +1329,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1342,7 +1342,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1355,7 +1355,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1368,7 +1368,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1381,7 +1381,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1394,7 +1394,7 @@ sankey = {
             "label": "S",
             "lineStyle": {
                 "color": "#1d3557",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1407,7 +1407,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1420,7 +1420,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1433,7 +1433,7 @@ sankey = {
             "label": "S",
             "lineStyle": {
                 "color": "#1d3557",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1446,7 +1446,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1460,7 +1460,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1474,7 +1474,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1487,7 +1487,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1500,7 +1500,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1513,7 +1513,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1526,7 +1526,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1541,7 +1541,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1554,7 +1554,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1567,7 +1567,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1582,7 +1582,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1595,7 +1595,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1614,7 +1614,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1627,7 +1627,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1640,7 +1640,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1653,7 +1653,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1668,7 +1668,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1683,7 +1683,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1696,7 +1696,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1710,7 +1710,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1725,7 +1725,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1739,7 +1739,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1754,7 +1754,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1770,7 +1770,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1783,7 +1783,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1796,7 +1796,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1810,7 +1810,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1827,7 +1827,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1841,7 +1841,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1855,7 +1855,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1869,7 +1869,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1887,7 +1887,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1900,7 +1900,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1913,7 +1913,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1926,7 +1926,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1939,7 +1939,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1957,7 +1957,7 @@ sankey = {
             "label": "S",
             "lineStyle": {
                 "color": "#1d3557",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1970,7 +1970,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -1986,7 +1986,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -2000,7 +2000,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -2013,7 +2013,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -2028,7 +2028,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -2042,7 +2042,7 @@ sankey = {
             "label": "SG",
             "lineStyle": {
                 "color": "#457b9d",
-                "opacity": 0.6
+                "opacity": 1
             }
         },
         {
@@ -2061,7 +2061,7 @@ sankey = {
             "label": "M",
             "lineStyle": {
                 "color": "#e63946",
-                "opacity": 0.6
+                "opacity": 1
             }
         }
     ],
@@ -2093,10 +2093,16 @@ for (var i = 0; i < 500; i++) {
 
 
 var option = {
-    grid: {},
+    //grid: {
+    //    left:'3%',
+    //    right:'3%',
+    //    top:'1%',
+    //    bottom:'15%',
+    //},
     legend: {
         opacity: 0.6,
         data: [
+            {"name": "Stable"},
             {
                 "name": "Merges",
                 "lineStyle": {
@@ -2105,24 +2111,40 @@ var option = {
                 }
             },
             {"name": "Splits"},
-            {"name": "Stable"},
-            {"name": "Overlaps"},
+            {"name": "Grows"},
             {"name": "Perishes"},
         ]
     },
-    xAxis: {
-        position: "bottom",
-        left: '0%',
-        right: '0%',
-        bottom: '0%',
-        type: 'category',
-        boundaryGap: false,
-        nameRotate: 1,
-        splitLine: {
-            show: false
+    xAxis: [
+        {
+            position: "bottom",
+            type: 'category',
+            boundaryGap: false,
+            nameRotate: 1,
+            splitLine: {
+                show: false
+            },
+            data: ['Jan-2017', 'Jan-2017', 'Jan-2017', 'Feb-2017', 'Mar-2017', 'Apr-2017', 'May-2017', 'Jun-2017', 'Jul-2017', 'Aug-2017', 'Sep-2017', 'Oct-2017', 'Nov-2017', 'Dec-2017', 'Feb-2018', 'Mar-2018', 'Apr-2018', 'Mai-2018', 'Jun-2018', 'Jun-2018']
         },
-        data: ['Jan-2017', 'Jan-2017', 'Jan-2017', 'Feb-2017', 'Mar-2017', 'Apr-2017', 'May-2017', 'Jun-2017', 'Jul-2017', 'Aug-2017', 'Sep-2017', 'Oct-2017', 'Nov-2017', 'Dec-2017', 'Feb-2018', 'Mar-2018', 'Apr-2018', 'Mai-2018', 'Jun-2018', 'Jun-2018']
-    },
+        {
+            position: "bottom",
+            offset: 25,
+            zlevel: 1,
+            type: 'category',
+            boundaryGap: false,
+            nameRotate: 2,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            data: ['Dec-2016', 'Oct-2018']
+        }
+    ],
     yAxis: {
         show: false,
     },
@@ -2130,6 +2152,9 @@ var option = {
         {
             type: 'slider',
             show: true,
+            filterMode: 'weakFilter',
+            start: 10,
+            end: 95,
 
         },
 
@@ -2165,12 +2190,20 @@ var option = {
             type: 'bar',
             backgroundStyle: {
                 color: "#e63946",
-                opacity: 0.6
             }
 
         },
         {
             name: "Splits",
+            type: 'bar',
+            backgroundStyle: {
+                color: "#943777",
+                opacity: 0.6
+            }
+
+        },
+        {
+            name: "Grows",
             type: 'bar',
             backgroundStyle: {
                 color: "#1d3557",
@@ -2180,14 +2213,6 @@ var option = {
         },
         {
             name: "Stable",
-            type: 'bar',
-            backgroundStyle: {
-                color: "#a8dadc",
-            }
-
-        },
-        {
-            name: "Overlaps",
             type: 'bar',
             backgroundStyle: {
                 color: "#e63946",
@@ -2215,3 +2240,231 @@ var option = {
 };
 console.log(sankey)
 sankeyChart.setOption(option);
+
+
+var timeSeries = echarts.init(document.getElementById('timeSeries'));
+ts_data = [['2017-04-23', 1],
+    ['2017-04-30', 0],
+    ['2017-05-07', 1],
+    ['2017-05-14', 1],
+    ['2017-05-21', 0],
+    ['2017-05-28', 1],
+    ['2017-06-04', 3],
+    ['2017-06-11', 1],
+    ['2017-06-18', 2],
+    ['2017-06-25', 3],
+    ['2017-07-02', 3],
+    ['2017-07-09', 5],
+    ['2017-07-16', 2],
+    ['2017-07-23', 1],
+    ['2017-07-30', 2],
+    ['2017-08-06', 3],
+    ['2017-08-13', 1],
+    ['2017-08-20', 2],
+    ['2017-08-27', 4],
+    ['2017-09-03', 3],
+    ['2017-09-10', 2],
+    ['2017-09-17', 4],
+    ['2017-09-24', 1],
+    ['2017-10-01', 2],
+    ['2017-10-08', 4],
+    ['2017-10-15', 9],
+    ['2017-10-22', 14],
+    ['2017-10-29', 18],
+    ['2017-11-05', 16],
+    ['2017-11-12', 23],
+    ['2017-11-19', 29],
+    ['2017-11-26', 20],
+    ['2017-12-03', 18],
+    ['2017-12-10', 15],
+    ['2017-12-17', 9],
+    ['2017-12-24', 30],
+    ['2017-12-31', 15],
+    ['2018-01-07', 24],
+    ['2018-01-14', 31],
+    ['2018-01-21', 21],
+    ['2018-01-28', 15],
+    ['2018-02-04', 25],
+    ['2018-02-11', 12],
+    ['2018-02-18', 16],
+    ['2018-02-25', 13],
+    ['2018-03-04', 10],
+    ['2018-03-11', 17],
+    ['2018-03-18', 22],
+    ['2018-03-25', 17],
+    ['2018-04-01', 15],
+    ['2018-04-08', 17],
+    ['2018-04-15', 18],
+    ['2018-04-22', 20],
+    ['2018-04-29', 20],
+    ['2018-05-06', 16],
+    ['2018-05-13', 9],
+    ['2018-05-20', 20],
+    ['2018-05-27', 19],
+    ['2018-06-03', 19],
+    ['2018-06-10', 13],
+    ['2018-06-17', 20],
+    ['2018-06-24', 11],
+    ['2018-07-01', 17],
+    ['2018-07-08', 11],
+    ['2018-07-15', 17],
+    ['2018-07-22', 14],
+    ['2018-07-29', 19],
+    ['2018-08-05', 11],
+    ['2018-08-12', 8],
+    ['2018-08-19', 14],
+    ['2018-08-26', 20],
+    ['2018-09-02', 12],
+    ['2018-09-09', 19],
+    ['2018-09-16', 17],
+    ['2018-09-23', 10],
+    ['2018-09-30', 12],
+    ['2018-10-07', 20],
+    ['2018-10-14', 15],
+    ['2018-10-21', 18],
+    ['2018-10-28', 17],
+    ['2018-11-04', 3],
+    ['2018-11-11', 12],
+    ['2018-11-18', 12],
+    ['2018-11-25', 19],
+    ['2018-12-02', 13],
+    ['2018-12-09', 23],
+    ['2018-12-16', 15],
+    ['2018-12-23', 22],
+    ['2018-12-30', 14],
+    ['2019-01-06', 16],
+    ['2019-01-13', 19],
+    ['2019-01-20', 29],
+    ['2019-01-27', 18],
+    ['2019-02-03', 19],
+    ['2019-02-10', 29],
+    ['2019-02-17', 23],
+    ['2019-02-24', 29],
+    ['2019-03-03', 24],
+    ['2019-03-10', 24],
+    ['2019-03-17', 17],
+    ['2019-03-24', 21],
+    ['2019-03-31', 26],
+    ['2019-04-07', 18],
+    ['2019-04-14', 23],
+    ['2019-04-21', 22],
+    ['2019-04-28', 15],
+    ['2019-05-05', 6],
+    ['2019-05-12', 12],
+    ['2019-05-19', 19],
+    ['2019-05-26', 26],
+    ['2019-06-02', 30],
+    ['2019-06-09', 23],
+    ['2019-06-16', 16],
+    ['2019-06-23', 11],
+    ['2019-06-30', 16],
+    ['2019-07-07', 26],
+    ['2019-07-14', 34],
+    ['2019-07-21', 18],
+    ['2019-07-28', 17],
+    ['2019-08-04', 19],
+    ['2019-08-11', 15],
+    ['2019-08-18', 15],
+    ['2019-08-25', 12],
+    ['2019-09-01', 13],
+    ['2019-09-08', 16],
+    ['2019-09-15', 14],
+    ['2019-09-22', 16],
+    ['2019-09-29', 18],
+    ['2019-10-06', 7],
+    ['2019-10-13', 10],
+    ['2019-10-20', 12],
+    ['2019-10-27', 12],
+    ['2019-11-03', 9],
+    ['2019-11-10', 14],
+    ['2019-11-17', 8],
+    ['2019-11-24', 16],
+    ['2019-12-01', 10],
+    ['2019-12-08', 18],
+    ['2019-12-15', 7],
+    ['2019-12-22', 15],
+    ['2019-12-29', 8]]
+
+ts_mark_area = [
+    [{
+        xAxis: '2017-09-24'
+    }, {
+        xAxis: '2017-12-17'
+    }],
+    [{
+        xAxis: '2017-12-31'
+    }, {
+        xAxis: '2018-01-28'
+    }],
+    [{
+        xAxis: '2018-05-13'
+    }, {
+        xAxis: '2018-06-10'
+    }],]
+option = {
+    grid: {
+        left: '3%',
+        right: '3%',
+        top: '13%',
+        bottom: '15%',
+    },
+    legend: {
+        textStyle: {
+            fontSize: 30,
+            top: 20
+        },
+        icon: 'none'
+    },
+    dataZoom: {
+        start: 10,
+        end: 70,
+    },
+    xAxis: [
+        {
+            position: "bottom",
+            type: 'category',
+            boundaryGap: false,
+            nameRotate: 1,
+            splitLine: {
+                show: false
+            },
+            // data: ['Jan-2017', 'Jan-2017', 'Jan-2017', 'Feb-2017', 'Mar-2017', 'Apr-2017', 'May-2017', 'Jun-2017', 'Jul-2017', 'Aug-2017', 'Sep-2017', 'Oct-2017', 'Nov-2017', 'Dec-2017', 'Feb-2018', 'Mar-2018', 'Apr-2018', 'Mai-2018', 'Jun-2018', 'Jun-2018']
+        },
+        {
+            position: "bottom",
+            offset: 25,
+            zlevel: 1,
+            type: 'category',
+            boundaryGap: false,
+            nameRotate: 2,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            data: ['May-2017', 'Dec-2019']
+        }
+    ],
+    yAxis: {
+        name: "#customers",
+        type: 'value'
+    },
+    series: [{
+        name: 'Weekly purchases of Hand Sanitizer by 120 Males, <35 ',
+        data: ts_data,
+        type: 'line',
+        smooth: false,
+        markArea: {
+            itemStyle: {
+                opacity: 0.2
+            },
+            data: ts_mark_area,
+        }
+    },]
+};
+
+timeSeries.setOption(option);
