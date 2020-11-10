@@ -1,6 +1,5 @@
 var sankeyChart = echarts.init(document.getElementById('sankeyDiagram'));
 
-
 sankey = {
     "top": "1%",
     "bottom": "15%",
@@ -158,17 +157,6 @@ sankey = {
         {
             "": "5",
             "user_ids": [
-                120086,
-                397621,
-                397953,
-                412666,
-                416657,
-                416890,
-                417444,
-                438114,
-                440514,
-                530327,
-                578902,
                 585456,
                 598886,
                 615324,
@@ -184,7 +172,7 @@ sankey = {
             "period": "2018-01-01",
             "property_values": "1",
             "depth": 17647.058823529413,
-            "size": 23,
+            "size": 12,
             "sex": "1",
             "itemset_name": "'[\"LAVAGE CLU\"]'",
             "name": "5",
@@ -357,17 +345,14 @@ sankey = {
                 624174,
                 711978,
                 811951,
-                866133,
-                886537,
-                906775,
-                1066967
+                866133
             ],
             "support": "24",
             "itemsets": "4112",
             "period": "2018-09-01",
             "property_values": "1",
             "depth": 41176.470588235294,
-            "size": 13,
+            "size": 11,
             "sex": "1",
             "itemset_name": "'[\"LAVAGE CLU\"]'",
             "name": "14",
@@ -440,343 +425,6 @@ sankey = {
                 "color": "rgb(27,120,0)"
             }
         },
-        {
-            "": "17",
-            "user_ids": [
-                119521,
-                231629,
-                252547,
-                261752,
-                273864,
-                285090,
-                285090
-            ],
-            "support": "42",
-            "itemsets": "4112",
-            "period": "2019-02-01",
-            "property_values": "1",
-            "depth": 58823.529411764706,
-            "size": 10,
-            "sex": "1",
-            "itemset_name": "'[\"LAVAGE CLU\"]'",
-            "name": "17",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "19",
-            "user_ids": [
-                107216,
-                107216,
-                107216,
-                286161,
-                336247,
-                338288,
-                378965,
-                432898,
-                437974,
-                482580,
-                533708,
-                560864,
-                625091,
-                711978,
-                721306,
-                805158,
-                874591,
-                876693,
-                965178,
-                1030140,
-                1031383,
-                1038786,
-                1055191,
-                1107311,
-                1242175
-            ],
-            "support": "37",
-            "itemsets": "4112",
-            "period": "2019-04-01",
-            "property_values": "1",
-            "depth": 70588.23529411765,
-            "size": 28,
-            "sex": "1",
-            "itemset_name": "'[\"LAVAGE CLU\"]'",
-            "name": "19",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "20",
-            "user_ids": [
-                119521,
-                309886,
-                345624,
-                403177,
-                483211,
-                545910,
-                625091,
-                711978,
-                721306,
-                923982,
-                997163,
-                1048334,
-                1168652
-            ],
-            "support": "27",
-            "itemsets": "4112",
-            "period": "2019-05-01",
-            "property_values": "1",
-            "depth": 76470.58823529411,
-            "size": 16,
-            "sex": "1",
-            "itemset_name": "'[\"LAVAGE CLU\"]'",
-            "name": "20",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "21",
-            "user_ids": [
-                1177294,
-                1177294,
-                1177294,
-                1199522,
-                1177294,
-                1199522,
-                1177294,
-                1199522
-            ],
-            "support": "30",
-            "itemsets": "4112",
-            "period": "2019-06-01",
-            "property_values": "1",
-            "depth": 82352.94117647059,
-            "size": 11,
-            "sex": "1",
-            "itemset_name": "'[\"LAVAGE CLU\"]'",
-            "name": "21",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "22",
-            "user_ids": [
-                120286,
-                347942,
-                355661,
-                390199,
-                437424,
-                440514,
-                460243,
-                499734,
-                519327,
-                535838,
-                557131,
-                618337,
-                625091,
-                626547,
-                642259,
-                771232,
-                805158,
-                820248,
-                867805,
-                923982,
-                1029987,
-                1196711,
-                1215832
-            ],
-            "support": "37",
-            "itemsets": "2051",
-            "period": "2019-07-01",
-            "property_values": "1",
-            "depth": 88235.29411764706,
-            "size": 26,
-            "sex": "1",
-            "itemset_name": "[]",
-            "name": "22",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "23",
-            "user_ids": [
-                105193,
-                274953,
-                285090,
-                307158,
-                345624,
-                378965,
-                390199,
-                437974,
-                452425,
-                457599,
-                465567,
-                530327,
-                585456,
-                711978,
-                835363,
-                871913,
-                874653,
-                1029987,
-                1030140
-            ],
-            "support": "33",
-            "itemsets": "4112",
-            "period": "2019-07-01",
-            "property_values": "1",
-            "depth": 88235.29411764706,
-            "size": 22,
-            "sex": "1",
-            "itemset_name": "'[\"LAVAGE CLU\"]'",
-            "name": "23",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "27",
-            "user_ids": [
-                108228,
-                499127,
-                500865,
-                532933,
-                565442,
-                645215,
-                749466,
-                814129,
-                843580,
-                873360,
-                894316,
-                949491,
-                952256,
-                1003223,
-                1031383,
-                1059452,
-                1164511,
-                1168652,
-                1177294
-            ],
-            "support": "33",
-            "itemsets": "4156",
-            "period": "2019-08-01",
-            "property_values": "1",
-            "depth": 94117.64705882352,
-            "size": 22,
-            "sex": "1",
-            "itemset_name": "[]",
-            "name": "27",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "28",
-            "user_ids": [
-                140566,
-                140566,
-                140566,
-                575523,
-                645215,
-                844897,
-                846796,
-                949491
-            ],
-            "support": "20",
-            "itemsets": "4112",
-            "period": "2019-08-01",
-            "property_values": "1",
-            "depth": 94117.64705882352,
-            "size": 11,
-            "sex": "1",
-            "itemset_name": "'[\"LAVAGE CLU\"]'",
-            "name": "28",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        },
-        {
-            "": "29",
-            "user_ids": [
-                115022,
-                391758,
-                403177,
-                410571,
-                498303,
-                520056,
-                642259,
-                1177294
-            ],
-            "support": "22",
-            "itemsets": "4126",
-            "period": "2019-08-01",
-            "property_values": "1",
-            "depth": 94117.64705882352,
-            "size": 11,
-            "sex": "1",
-            "itemset_name": "'[\"RECHARGE LAVAGE\"]'",
-            "name": "29",
-            "label": {
-                "normal": {
-                    "distance": -1
-                }
-            },
-            "itemStyle": {
-                "z": 1,
-                "color": "rgb(27,120,0)"
-            }
-        }
     ],
     "links": [
         {
@@ -788,9 +436,9 @@ sankey = {
                 578902
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -804,9 +452,9 @@ sankey = {
                 574109
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -818,9 +466,9 @@ sankey = {
                 530327
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -832,9 +480,9 @@ sankey = {
                 390199
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -850,12 +498,18 @@ sankey = {
                 923982,
                 390199,
                 438114,
-                578902
+                578902,
+                274953,
+                598886,
+                923982,
+                274953,
+                598886,
+                923982
             ],
-            "value": 6,
-            "label": "M",
+            "value": 12,
+            "label": "ST",
             "lineStyle": {
-                "color": "#e63946",
+                "color": "#457b9d",
                 "opacity": 1
             }
         },
@@ -866,9 +520,9 @@ sankey = {
                 332635
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -879,9 +533,9 @@ sankey = {
                 957568
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -893,9 +547,9 @@ sankey = {
                 866133
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -906,9 +560,9 @@ sankey = {
                 336247
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -937,9 +591,9 @@ sankey = {
                 180230
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -950,9 +604,9 @@ sankey = {
                 625091
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -963,9 +617,9 @@ sankey = {
                 149886
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -980,9 +634,9 @@ sankey = {
                 482512
             ],
             "value": 2,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1002,9 +656,9 @@ sankey = {
                 482512
             ],
             "value": 7,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1032,9 +686,9 @@ sankey = {
                 482512
             ],
             "value": 15,
-            "label": "M",
+            "label": "S",
             "lineStyle": {
-                "color": "#e63946",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1050,9 +704,9 @@ sankey = {
                 957568
             ],
             "value": 3,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1063,9 +717,9 @@ sankey = {
                 957568
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1081,9 +735,9 @@ sankey = {
                 874591
             ],
             "value": 3,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1094,9 +748,9 @@ sankey = {
                 132519
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1107,9 +761,9 @@ sankey = {
                 132519
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1120,9 +774,9 @@ sankey = {
                 355812
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1134,9 +788,9 @@ sankey = {
                 711978
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1147,9 +801,9 @@ sankey = {
                 717621
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1188,9 +842,9 @@ sankey = {
                 221900
             ],
             "value": 1,
-            "label": "SG",
+            "label": "G",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#e63946",
                 "opacity": 1
             }
         },
@@ -1201,9 +855,30 @@ sankey = {
                 120286
             ],
             "value": 1,
-            "label": "SG",
+            "label": "G",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#e63946",
+                "opacity": 1
+            }
+        },
+        {
+            "source": "14",
+            "target": "16",
+            "user_id": [
+                274953,
+                598886,
+                923982,
+                390199,
+                438114,
+                567,
+                390199,
+                438114,
+
+            ],
+            "value": 6,
+            "label": "G",
+            "lineStyle": {
+                "color": "#e63946",
                 "opacity": 1
             }
         },
@@ -1219,7 +894,7 @@ sankey = {
                 867805
             ],
             "value": 3,
-            "label": "M",
+            "label": "G",
             "lineStyle": {
                 "color": "#e63946",
                 "opacity": 1
@@ -1231,12 +906,18 @@ sankey = {
             "user_id": [
                 193191,
                 285365,
-                874591
+                874591,
+                678,
+                678854,
+                34575,
+                45678,
+                5775,
+                5664
             ],
-            "value": 1,
+            "value": 6,
             "label": "M",
             "lineStyle": {
-                "color": "#e63946",
+                "color": "#a8dadc",
                 "opacity": 1
             }
         },
@@ -1244,34 +925,18 @@ sankey = {
             "source": "12",
             "target": "14",
             "user_id": [
-                805158
+                805158,
+                5678,
+                567,
+                678,
+                678,
+                677588,
+                6789
             ],
-            "value": 1,
+            "value": 4,
             "label": "M",
             "lineStyle": {
-                "color": "#e63946",
-                "opacity": 1
-            }
-        },
-        {
-            "source": "14",
-            "target": "16",
-            "user_id": [
-                274953,
-                598886,
-                923982,
-                390199,
-                438114,
-                578902,
-                923982,
-                390199,
-                438114,
-                578902
-            ],
-            "value": 7,
-            "label": "M",
-            "lineStyle": {
-                "color": "#e63946",
+                "color": "#a8dadc",
                 "opacity": 1
             }
         },
@@ -1284,9 +949,9 @@ sankey = {
                 482512
             ],
             "value": 1,
-            "label": "SG",
+            "label": "G",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#e63946",
                 "opacity": 1
             }
         },
@@ -1298,22 +963,9 @@ sankey = {
                 574109
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
-                "opacity": 1
-            }
-        },
-        {
-            "source": "4",
-            "target": "5",
-            "user_id": [
-                874591
-            ],
-            "value": 1,
-            "label": "M",
-            "lineStyle": {
-                "color": "#e63946",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1326,9 +978,9 @@ sankey = {
                 578902
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1339,9 +991,9 @@ sankey = {
                 717621
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1352,9 +1004,9 @@ sankey = {
                 226924
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1365,9 +1017,9 @@ sankey = {
                 176750
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1378,9 +1030,9 @@ sankey = {
                 923982
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1404,9 +1056,9 @@ sankey = {
                 285090
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1417,9 +1069,9 @@ sankey = {
                 820248
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1443,9 +1095,9 @@ sankey = {
                 717621
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1459,7 +1111,7 @@ sankey = {
             "value": 1,
             "label": "M",
             "lineStyle": {
-                "color": "#e63946",
+                "color": "#a8dadc",
                 "opacity": 1
             }
         },
@@ -1473,7 +1125,7 @@ sankey = {
             "value": 1,
             "label": "M",
             "lineStyle": {
-                "color": "#e63946",
+                "color": "#a8dadc",
                 "opacity": 1
             }
         },
@@ -1484,9 +1136,9 @@ sankey = {
                 262442
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1497,9 +1149,9 @@ sankey = {
                 115022
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1510,9 +1162,9 @@ sankey = {
                 574109
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1523,9 +1175,9 @@ sankey = {
                 820248
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1538,9 +1190,9 @@ sankey = {
                 343202
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1551,9 +1203,9 @@ sankey = {
                 530327
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1564,9 +1216,9 @@ sankey = {
                 226924
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1579,9 +1231,9 @@ sankey = {
                 438114
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1592,9 +1244,9 @@ sankey = {
                 259132
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1611,9 +1263,9 @@ sankey = {
                 625091
             ],
             "value": 4,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1624,9 +1276,9 @@ sankey = {
                 355812
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1637,9 +1289,9 @@ sankey = {
                 530327
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1650,9 +1302,9 @@ sankey = {
                 1030140
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1665,9 +1317,9 @@ sankey = {
                 1030140
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1680,9 +1332,9 @@ sankey = {
                 625091
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1693,9 +1345,9 @@ sankey = {
                 642259
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1707,9 +1359,9 @@ sankey = {
                 805158
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1722,9 +1374,9 @@ sankey = {
                 923982
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1736,9 +1388,9 @@ sankey = {
                 530327
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1751,9 +1403,9 @@ sankey = {
                 1030140
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1767,9 +1419,9 @@ sankey = {
                 711978
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1780,9 +1432,9 @@ sankey = {
                 226924
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1793,9 +1445,9 @@ sankey = {
                 176750
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1807,9 +1459,9 @@ sankey = {
                 530327
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1824,9 +1476,9 @@ sankey = {
                 711978
             ],
             "value": 2,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1838,9 +1490,9 @@ sankey = {
                 820248
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1852,9 +1504,9 @@ sankey = {
                 209276
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1866,9 +1518,9 @@ sankey = {
                 274953
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1884,9 +1536,9 @@ sankey = {
                 309886
             ],
             "value": 3,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1897,9 +1549,9 @@ sankey = {
                 432898
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1910,9 +1562,9 @@ sankey = {
                 301967
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1923,9 +1575,9 @@ sankey = {
                 285090
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1936,9 +1588,9 @@ sankey = {
                 438114
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1967,9 +1619,9 @@ sankey = {
                 262442
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1983,9 +1635,9 @@ sankey = {
                 642259
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -1997,9 +1649,9 @@ sankey = {
                 274953
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -2010,9 +1662,9 @@ sankey = {
                 251114
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -2025,9 +1677,9 @@ sankey = {
                 285365
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -2039,9 +1691,9 @@ sankey = {
                 285365
             ],
             "value": 1,
-            "label": "SG",
+            "label": "S",
             "lineStyle": {
-                "color": "#457b9d",
+                "color": "#1d3557",
                 "opacity": 1
             }
         },
@@ -2060,18 +1712,1316 @@ sankey = {
             "value": 4,
             "label": "M",
             "lineStyle": {
-                "color": "#e63946",
+                "color": "#a8dadc",
                 "opacity": 1
             }
         }
     ],
-    "tooltip": {},
     'label': {
         distance: 0,
         position: "inside",
         formatter: 'G{b}',
     },
-    cursor: 'pointer'
+    "tooltip": {
+        "data": [
+            {
+                "source": "0",
+                "target": "1",
+                "user_id": [
+                    390199,
+                    438114,
+                    578902
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "0",
+                "target": "2",
+                "user_id": [
+                    114932,
+                    132519,
+                    332635,
+                    574109
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "1",
+                "target": "5",
+                "user_id": [
+                    262442,
+                    530327
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "3",
+                "target": "5",
+                "user_id": [
+                    120286,
+                    390199
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "4",
+                "target": "5",
+                "user_id": [
+                    274953,
+                    598886,
+                    923982,
+                    274953,
+                    598886,
+                    923982,
+                    390199,
+                    438114,
+                    578902,
+                    274953,
+                    598886,
+                    923982,
+                    274953,
+                    598886,
+                    923982
+                ],
+                "value": 12,
+                "label": "ST",
+                "lineStyle": {
+                    "color": "#457b9d",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "2",
+                "target": "6",
+                "user_id": [
+                    332635
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "4",
+                "target": "6",
+                "user_id": [
+                    957568
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "6",
+                "user_id": [
+                    274953,
+                    866133
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "6",
+                "target": "9",
+                "user_id": [
+                    336247
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "7",
+                "target": "9",
+                "user_id": [
+                    114932,
+                    390199,
+                    519327,
+                    574109,
+                    578902,
+                    867805
+                ],
+                "value": 3,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "8",
+                "target": "9",
+                "user_id": [
+                    180230
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "1",
+                "target": "17",
+                "user_id": [
+                    625091
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "13",
+                "target": "17",
+                "user_id": [
+                    149886
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "16",
+                "target": "17",
+                "user_id": [
+                    120286,
+                    132519,
+                    188588,
+                    437974,
+                    482512
+                ],
+                "value": 2,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "16",
+                "target": "18",
+                "user_id": [
+                    103240,
+                    384542,
+                    390199,
+                    423878,
+                    438114,
+                    443706,
+                    519327,
+                    574109,
+                    578902,
+                    482512
+                ],
+                "value": 7,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "16",
+                "target": "19",
+                "user_id": [
+                    103240,
+                    384542,
+                    390199,
+                    423878,
+                    438114,
+                    443706,
+                    519327,
+                    574109,
+                    578902,
+                    188588,
+                    437974,
+                    106174,
+                    287754,
+                    312415,
+                    317586,
+                    332635,
+                    355661,
+                    482512
+                ],
+                "value": 15,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "1",
+                "target": "4",
+                "user_id": [
+                    273864,
+                    274953,
+                    280880,
+                    835363,
+                    874591,
+                    957568
+                ],
+                "value": 3,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "2",
+                "target": "4",
+                "user_id": [
+                    957568
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "3",
+                "target": "4",
+                "user_id": [
+                    147391,
+                    273864,
+                    280880,
+                    598886,
+                    835363,
+                    874591
+                ],
+                "value": 3,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "1",
+                "target": "8",
+                "user_id": [
+                    132519
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "2",
+                "target": "8",
+                "user_id": [
+                    132519
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "3",
+                "target": "8",
+                "user_id": [
+                    355812
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "8",
+                "user_id": [
+                    438114,
+                    711978
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "6",
+                "target": "8",
+                "user_id": [
+                    717621
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "7",
+                "target": "11",
+                "user_id": [
+                    193191,
+                    285365,
+                    874591
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "7",
+                "target": "12",
+                "user_id": [
+                    805158
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "3",
+                "target": "16",
+                "user_id": [
+                    221900
+                ],
+                "value": 1,
+                "label": "G",
+                "lineStyle": {
+                    "color": "#e63946",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "16",
+                "user_id": [
+                    120286
+                ],
+                "value": 1,
+                "label": "G",
+                "lineStyle": {
+                    "color": "#e63946",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "14",
+                "target": "16",
+                "user_id": [
+                    274953,
+                    598886,
+                    923982,
+                    390199,
+                    438114,
+                    567,
+                    390199,
+                    438114,
+                    598886,
+                    923982,
+                    390199,
+                    438114,
+                    578902,
+                    923982,
+                    390199,
+                    438114
+                ],
+                "value": 13,
+                "label": "G",
+                "lineStyle": {
+                    "color": "#e63946",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "9",
+                "target": "16",
+                "user_id": [
+                    114932,
+                    499127,
+                    114932,
+                    499127,
+                    519327,
+                    867805
+                ],
+                "value": 3,
+                "label": "G",
+                "lineStyle": {
+                    "color": "#e63946",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "11",
+                "target": "14",
+                "user_id": [
+                    193191,
+                    285365,
+                    874591,
+                    678,
+                    678854,
+                    34575,
+                    45678,
+                    5775,
+                    5664
+                ],
+                "value": 6,
+                "label": "M",
+                "lineStyle": {
+                    "color": "#a8dadc",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "12",
+                "target": "14",
+                "user_id": [
+                    805158,
+                    5678,
+                    567,
+                    678,
+                    678,
+                    677588,
+                    6789
+                ],
+                "value": 4,
+                "label": "M",
+                "lineStyle": {
+                    "color": "#a8dadc",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "15",
+                "target": "16",
+                "user_id": [
+                    115022,
+                    259132,
+                    482512
+                ],
+                "value": 1,
+                "label": "G",
+                "lineStyle": {
+                    "color": "#e63946",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "2",
+                "target": "7",
+                "user_id": [
+                    114932,
+                    574109
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "7",
+                "user_id": [
+                    390199,
+                    438114,
+                    578902
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "6",
+                "target": "7",
+                "user_id": [
+                    717621
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "2",
+                "target": "13",
+                "user_id": [
+                    226924
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "3",
+                "target": "13",
+                "user_id": [
+                    176750
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "13",
+                "user_id": [
+                    923982
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "7",
+                "target": "13",
+                "user_id": [
+                    149886
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "3",
+                "target": "10",
+                "user_id": [
+                    285090
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "10",
+                "user_id": [
+                    820248
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "7",
+                "target": "10",
+                "user_id": [
+                    717621
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "8",
+                "target": "10",
+                "user_id": [
+                    717621
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "6",
+                "target": "14",
+                "user_id": [
+                    274953,
+                    866133
+                ],
+                "value": 1,
+                "label": "M",
+                "lineStyle": {
+                    "color": "#a8dadc",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "13",
+                "target": "14",
+                "user_id": [
+                    176750,
+                    343202
+                ],
+                "value": 1,
+                "label": "M",
+                "lineStyle": {
+                    "color": "#a8dadc",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "15",
+                "user_id": [
+                    262442
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "6",
+                "target": "15",
+                "user_id": [
+                    115022
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "9",
+                "target": "15",
+                "user_id": [
+                    574109
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "10",
+                "target": "15",
+                "user_id": [
+                    820248
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "14",
+                "target": "15",
+                "user_id": [
+                    176750,
+                    274953,
+                    343202
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "5",
+                "target": "18",
+                "user_id": [
+                    530327
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "13",
+                "target": "18",
+                "user_id": [
+                    226924
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "14",
+                "target": "16",
+                "user_id": [
+                    231893,
+                    280880,
+                    438114
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "16",
+                "target": "18",
+                "user_id": [
+                    259132
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "17",
+                "target": "18",
+                "user_id": [
+                    132519,
+                    179416,
+                    209276,
+                    231629,
+                    432898,
+                    482512,
+                    625091
+                ],
+                "value": 4,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "8",
+                "target": "25",
+                "user_id": [
+                    355812
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "25",
+                "user_id": [
+                    530327
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "19",
+                "target": "25",
+                "user_id": [
+                    1030140
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "16",
+                "target": "19",
+                "user_id": [
+                    221900,
+                    711978,
+                    1030140
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "19",
+                "user_id": [
+                    231629,
+                    432898,
+                    625091
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "22",
+                "user_id": [
+                    642259
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "19",
+                "target": "22",
+                "user_id": [
+                    336247,
+                    805158
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "20",
+                "target": "22",
+                "user_id": [
+                    345624,
+                    625091,
+                    923982
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "23",
+                "user_id": [
+                    179416,
+                    530327
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "19",
+                "target": "23",
+                "user_id": [
+                    221900,
+                    437974,
+                    1030140
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "20",
+                "target": "23",
+                "user_id": [
+                    147391,
+                    285090,
+                    345624,
+                    711978
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "24",
+                "user_id": [
+                    226924
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "2121",
+                "target": "24",
+                "user_id": [
+                    176750
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "26",
+                "user_id": [
+                    226924,
+                    530327
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "19",
+                "target": "20",
+                "user_id": [
+                    157246,
+                    188588,
+                    285090,
+                    625091,
+                    711978
+                ],
+                "value": 2,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "15",
+                "target": "21",
+                "user_id": [
+                    343202,
+                    820248
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "21",
+                "user_id": [
+                    176750,
+                    209276
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "19",
+                "target": "21",
+                "user_id": [
+                    273864,
+                    274953
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "20",
+                "target": "21",
+                "user_id": [
+                    133917,
+                    157246,
+                    188588,
+                    259132,
+                    280880,
+                    309886
+                ],
+                "value": 3,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "19",
+                "target": "27",
+                "user_id": [
+                    432898
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "22",
+                "target": "27",
+                "user_id": [
+                    301967
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "23",
+                "target": "27",
+                "user_id": [
+                    285090
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "28",
+                "user_id": [
+                    438114
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "21",
+                "target": "28",
+                "user_id": [
+                    209276,
+                    280880,
+                    309886,
+                    209276,
+                    280880,
+                    309886
+                ],
+                "value": 3,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "18",
+                "target": "29",
+                "user_id": [
+                    262442
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "22",
+                "target": "29",
+                "user_id": [
+                    180230,
+                    274953,
+                    355661,
+                    642259
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "23",
+                "target": "29",
+                "user_id": [
+                    188588,
+                    274953
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "24",
+                "target": "29",
+                "user_id": [
+                    251114
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "25",
+                "target": "29",
+                "user_id": [
+                    133917,
+                    188588,
+                    285365
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "26",
+                "target": "29",
+                "user_id": [
+                    274953,
+                    285365
+                ],
+                "value": 1,
+                "label": "S",
+                "lineStyle": {
+                    "color": "#1d3557",
+                    "opacity": 1
+                }
+            },
+            {
+                "source": "17",
+                "target": "19",
+                "user_id": [
+                    157246,
+                    157246,
+                    157246,
+                    188588,
+                    273864,
+                    285090,
+                    437974
+                ],
+                "value": 4,
+                "label": "M",
+                "lineStyle": {
+                    "color": "#a8dadc",
+                    "opacity": 1
+                }
+            }
+        ]
+    }
 }
 
 
@@ -2102,12 +3052,18 @@ var option = {
     legend: {
         opacity: 0.6,
         data: [
-            {"name": "Stable"},
+            {
+                "name": "Stable",
+                "lineStyle": {
+                    "color": "#457b9d",
+                    "opacity": 1
+                }
+            },
             {
                 "name": "Merges",
                 "lineStyle": {
                     "color": "#457b9d",
-                    "opacity": 0.6
+                    "opacity": 1
                 }
             },
             {"name": "Splits"},
