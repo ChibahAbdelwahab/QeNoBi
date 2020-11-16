@@ -1,10 +1,10 @@
 var sankeyChart = echarts.init(document.getElementById('sankeyDiagram'));
 
 sankey = {
-    "top": "1%",
+    "top": "5%",
     "bottom": "15%",
-    "left": "10%",
-    "right": "10%",
+    "left": "1%",
+    "right": "1%",
     "type": "sankey",
     "name": "Sankey",
     "focusNodeAdjacency": "allEdges",
@@ -450,20 +450,6 @@ sankey = {
                 132519,
                 332635,
                 574109
-            ],
-            "value": 1,
-            "label": "S",
-            "lineStyle": {
-                "color": "#1d3557",
-                "opacity": 1
-            }
-        },
-        {
-            "source": "1",
-            "target": "5",
-            "user_id": [
-                262442,
-                530327
             ],
             "value": 1,
             "label": "S",
@@ -3043,14 +3029,17 @@ for (var i = 0; i < 500; i++) {
 
 
 var option = {
-    //grid: {
-    //    left:'3%',
-    //    right:'3%',
-    //    top:'1%',
-    //    bottom:'15%',
-    //},
+    grid: {
+        left: '3%',
+        //    right:'3%',
+        top: '30%',
+        //    bottom:'15%',
+    },
     legend: {
         opacity: 0.6,
+        textStyle: {
+            fontSize: 20,
+        },
         data: [
             {
                 "name": "Stable",
@@ -3059,6 +3048,7 @@ var option = {
                     "opacity": 1
                 }
             },
+
             {
                 "name": "Merges",
                 "lineStyle": {
@@ -3067,7 +3057,14 @@ var option = {
                 }
             },
             {"name": "Splits"},
-            {"name": "Grows"},
+            {
+                "name": "Grows",
+                itemStyle: {
+                    color: "#a8dadc",
+                    "opacity": 1
+
+                }
+            },
             {"name": "Perishes"},
         ]
     },
@@ -3144,7 +3141,7 @@ var option = {
         {
             name: "Merges",
             type: 'bar',
-            backgroundStyle: {
+            itemStyle: {
                 color: "#e63946",
             }
 
@@ -3152,17 +3149,18 @@ var option = {
         {
             name: "Splits",
             type: 'bar',
-            backgroundStyle: {
-                color: "#943777",
-                opacity: 0.6
+            itemStyle: {
+                color: "#1d3557",
             }
 
         },
         {
             name: "Grows",
             type: 'bar',
-            backgroundStyle: {
-                color: "#1d3557",
+            itemStyle: {
+                color: "#a8dadc",
+                "opacity": 1
+
             }
 
 
@@ -3170,16 +3168,16 @@ var option = {
         {
             name: "Stable",
             type: 'bar',
-            backgroundStyle: {
-                color: "#e63946",
+            itemStyle: {
+                color: "#457b9d",
             }
 
         },
         {
             name: "Perishes",
             type: 'bar',
-            backgroundStyle: {
-                color: "#e63946",
+            itemStyle: {
+                color: "#aFFFF",
             }
 
         },
@@ -3424,3 +3422,12 @@ option = {
 };
 
 timeSeries.setOption(option);
+timeSeries.resize();
+
+
+$(window).on('resize', function () {
+    sankeyChart.resize();
+    timeSeries.resize();
+});
+
+timeSeries.resize();
