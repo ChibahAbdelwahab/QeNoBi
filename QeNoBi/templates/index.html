@@ -1,0 +1,684 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+    <title>QeNoBi</title>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+    <link href="{% static '/fonts/fontawesome-all.min.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
+          rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="{% static 'css/untitled.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="text-dark " id="page-top">
+<div style="max-height: 100%;background: #F5F9FB;overflow-y:hidden" id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0 h-100"
+         style="background: #005086">
+        <div class="container-fluid d-flex flex-column p-0 m-1">
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="">
+                <div class="sidebar-brand-text mt-5 ">
+                    <p class="mt-5" style="font-size: 42px;">QeNoBi</p>
+                </div>
+            </a>
+            <div class="nav mt-5 navbar-nav text-light w-100 h-100" id="accordionSidebar">
+                <div class="row m-0 p-0 w-100">
+                    <div class="col m-2 ml-3 mt-0 mb-2 p-0 w-100">
+                        <p class="mb-3" style="font-size: 30px;">Dataset</p>
+                        <div class="ml- dataset-buttons text-white mt-1 mr-2">
+                            <button class="btn  border-white text-white h-100 w-100 ml-0 mb-2 mr-3"
+                                    type="button">
+                                Retail
+                            </button>
+                            <button class="btn border-white text-white h-100 w-100  mt-2 ml-0 mr-3"
+                                    type="button">Amazon
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-elem">
+                        <div>
+                            <p>Period</p>
+                        </div>
+                        <div>
+                            <select class="form-control" multiple="multiple">
+                                <option selected="" value="12">Jan 2017-Dec 2019</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr class="bg-white w-75 mb-3 mt-3">
+                    <div class="customercentric row text-black align-items-center justify-content-center w-100 text-white p-0 m-0"
+                         id="customer-centric-selection">
+                        <div class="sidebar-elem">
+                            <div class="mb-3">
+                                <p style="font-size: 30px;">Sankey</p>
+                            </div>
+                            <div>
+                                <p>Demographics</p>
+                            </div>
+                            <div>
+                                <select class="form-control " multiple="multiple">
+                                    <option selected value="13">Gender</option>
+                                    <option selected value="11">Age</option>
+                                    <option value="12">Location</option>
+                                    <option value="12">Occupation</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Product</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected value="13">Category</option>
+                                    <option value="12">Price</option>
+                                    <option value="12">Name</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p> Time granularity</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option value="13">Weekly</option>
+                                    <option selected="" value="12">Monthly</option>
+                                    <option value="14">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Support</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">10</option>
+                                    <option value="13">20</option>
+                                    <option value="14">30</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Min products</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">3</option>
+                                    <option value="13">This is item 2</option>
+                                    <option value="14">This is item 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Max products</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">10</option>
+                                    <option value="13">20</option>
+                                    <option value="14">30</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productcentric row text-black align-items-center justify-content-center w-100 text-white p-0 m-0"
+                         id="product-centric-selection" style="display: none">
+                        <div class="sidebar-elem">
+                            <div class="mb-3">
+                                <p style="font-size: 30px;">Time Series</p>
+                            </div>
+                            <div>
+                                <p>Product category</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">Beauty&Health</option>
+                                    <option value="13">Snacks</option>
+                                    <option value="14">Drinks</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Product name</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">Hand Sanitizer</option>
+                                    <option value="13">Wipes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Customers</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">120 Males, <35</option>
+                                    <option value="13">120 Males, >65</option>
+                                    <option value="14">40 Females</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Time Granularity</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">Weekly</option>
+                                    <option value="13">Monthly</option>
+                                    <option value="14">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="bg-white w-75 mb-3 mt-3">
+
+                    <button class="btn btn-success text-white h-75 w-100  m-4"
+                            type="button">Generate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex flex-column h-100 m-1 h-100" style="background: #F5F9FB !important;" id="content-wrapper">
+        <div class="row m-1 p-0" style="border: 0.1px solid lightgray;">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a aria-selected="true" class="nav-item  text-dark nav-link active" data-toggle="tab"
+                       href="#tab-1" id="customer-centric-tab"
+                       role="tab">Customer-Centric</a>
+                    <a aria-selected="false" class="nav-item  text-dark nav-link" data-toggle="tab" href="#tab-2"
+                       id="product-centric-tab" role="tab">Product-Centric</a>
+                </div>
+            </nav>
+            <div class="col-12 tabscontent mb-0 p-0 tab-content  ">
+                <div class="tab-pane active p-0 mb-1 h-100" id="tab-1" role="tabpanel">
+                    <div class="row m-auto align-items-center ">
+                        <div class="col-10 p-0 bg-white " id="sankeyDiagram"
+                             style="position:relative; height: 55vh;min-width: 200px">
+                        </div>
+                        <div class="col-2 " style="border-left: 5px solid #005086">
+                            <div class="col m-0 border-primary">
+                                <p class=" text-center text-primary p-0 m-1 " style="font-size: 30px;">Highlighted
+                                    Group</p>
+                            </div>
+                            <div class="table table-sm  table-striped   text-dark ">
+                                <table class="table">
+                                    <thead class="indigo text-dark">
+                                    </thead>
+                                    <tbody>
+                                    <tr class="text-dark">
+                                        <th class="">ID</th>
+                                        <td id="details-group-id">G7</td>
+                                    </tr>
+                                    <tr class="text-dark">
+                                        <th class="">Description</th>
+                                        <td id="details-group-description">14 Males,&lt;35, Hand Sanitizer</td>
+                                    </tr>
+                                    <tr class="text-dark">
+                                        <th class="">Period</th>
+                                        <td id="details-group-period">Oct 2017</td>
+                                    </tr>
+                                    <tr class="text-dark">
+                                        <th class="">#Incoming links</th>
+                                        <td id="details-group-incoming" class="">2</td>
+                                    </tr>
+                                    <tr class="text-dark">
+                                        <th class="">#Outgoing links</th>
+                                        <td id="details-group-outgoing" class="">4</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane p-0 -lg productcentric h-100 align-items-end justify-content-end" id="tab-2"
+                     role="tabpanel">
+                    <div class="row h-100 w-100 align-items-end justify-content-end ">
+                        <div class="align-items-end mt-2 ">
+                            <div class="w-100"></div>
+                            <strong class="col-12 align-items-end justify-content-end">Smoothing Iteration : </strong>
+                            <span class="col-1" id="smoothIterationValue">0</span>
+                            <input id="smoothingIterationPicker" max="4" min="0" type="range" value="0">
+                        </div>
+                        <div class="col-12 w-100" id="timeSeries"
+                             style="position:relative;height: 53vh">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row tabscontent  content  m-1 p-0" style="border: 0.1px solid lightgray">
+            <div class="col-8 " style="background: white">
+                <div class="row w-100 m-0 p-0">
+                    <div class="col-8 p-0 m-0">
+                        <p class="customercentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query on
+                            Sankey</p>
+                        <p class=" productcentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query on
+                            Time Series </p>
+
+                    </div>
+                    <div class="col-4 mt-2 end">
+                        <div class="row align-items-end justify-content-center p-0  mb-0 mt-0">
+                            <label for="topk" class="col-2 m-auto">TopK :</label>
+                            <input value="5" class="col-8 form-control  m-2" id="topk" type="number">
+                        </div>
+                    </div>
+                    <div class="col query-input  align">
+                        <div class="row align-bottom h-100 mb-0">
+                            <p class="col-12  ml-1 mb-0 pb-0  " style="font-size: 25px;">Shape </p>
+                            <div class="productcentric  m-1 pl-0 ">
+                                <canvas id="myCanvas" style="height: auto;" class="w-100 pb-0 mr-1"></canvas>
+                                <hr class="col-12 ml-2 mb-2 mt-2 mr-3  w-100 ">
+                                <div class="row pb-1 ml-3 bg w-100  mb-0 justify-content-lg-start  ">
+
+                                    <select class="col-9 ml-0 text-dark form-control" placeholder="Predefined shape">
+                                        <option disabled selected value="">Predefined queries</option>
+                                        <option value="A" selected="">IV Shape</option>
+                                        <option value="A">V Shape</option>
+                                        <option value="A">A Shape</option>
+                                        <option value="A">D Shape</option>
+                                    </select>
+                                    <button id="query-clear-button"
+                                            class="col-2 mt-1 mb-1 mr-3-1  pl-0  btn btn-danger btn-sm">Clear
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="customercentric   m-1 pl-0 ">
+                                <canvas id="graphquerycanvas"
+                                        style="height: auto;position: relative;background: lightgray"
+                                        class="w-100 pb-0 mr-1"></canvas>
+                                <input type="text"
+                                       class="form-control m-auto align-items-center justify-content-center text-dark"
+                                       value="SPLIT - MERGE">
+                                <hr class="col-12 ml-2 mb-2 mt-2 mr-3  w-100 ">
+                                <div class="row pb-1 ml-3 bg w-100  mb-0 justify-content-lg-start  ">
+
+                                    <select class="col-9  ml-0 text-dark form-control" placeholder="Predefined shape">
+                                        <option disabled selected value="">Predefined queries</option>
+                                        <option value="A" selected="">Split-Merge Shape</option>
+                                        <option value="A">Stable-Merge Shape</option>
+                                        <option value="A">Perishes Shape</option>
+                                    </select>
+                                    <button id="query-clear-button"
+                                            class="col-2 mt-1 mb-1   pl-0  btn btn-danger btn-sm">Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col query-input">
+                        <p class="ml-0" style="font-size: 25px;">Customers</p>
+
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Gender</p>
+                            </div>
+                            <div>
+                                <select class=" form-control text-dark" multiple="multiple">
+                                    <option value="ALL">ALL</option>
+                                    <option selected="" value="12">Male</option>
+                                    <option value="13">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Age</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option value="12">ALL</option>
+                                    <option selected="" value="12"><35</option>
+                                    <option value="13">35-49</option>
+                                    <option value="14">>49</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div><p>Location</p></div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option value="12" selected="">Paris</option>
+                                    <option value="12">ALL</option>
+                                    <option value="13">Marseille</option>
+                                    <option value="14">Grenoble</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem pb-1">
+                            <div>
+                                <p>Occupation</p>
+                            </div>
+                            <div>
+                                <select class="form-control " multiple="multiple">
+                                    <option selected="" value="12">ALL</option>
+                                    <option value="12">Student</option>
+                                    <option value="13">Doctor</option>
+                                    <option value="14">Salesman</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col query-input">
+                        <p class="ml-0" style="font-size: 25px;">Products</p>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Category</p>
+                            </div>
+                            <div>
+                                <select class="form-control" multiple="multiple">
+                                    <option selected="" value="12">ALL</option>
+                                    <option value="13">Snacks</option>
+                                    <option value="14">Beauty&Health</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Name</p>
+                            </div>
+                            <div>
+                                <select class="form-control text-dark" multiple="multiple">
+                                    <option value="12" selected>ALL</option>
+                                    <option value="12">Hand Sanitizer</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col query-input">
+                        <p class="ml-0" style="font-size: 25px;">Time</p>
+                        <div class="sidebar-elem">
+
+                            <div>
+                                <p>Time span</p>
+                            </div>
+                            <div>
+                                <select title=" " id="query-time" class="form-control">
+                                    <option value="12" selected>ALL</option>
+                                    <option value="12">1 (Week)</option>
+                                    <option value="12">2 (Weeks)</option>
+                                    <option value="12">3 (Weeks)</option>
+                                    <option value="12">4 (Weeks)</option>
+                                    <option value="13">5 (weeks)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sidebar-elem">
+                            <div>
+                                <p>Tolerance</p>
+                            </div>
+                            <div>
+                                <select title=" " id="query-time-tolerance" class="form-control text-dark">
+                                    <option value="13" selected>ALL</option>
+                                    <option value="13">±1 (Week)</option>
+                                    <option value="13">±2 (Weeks)</option>
+                                    <option value="13">±3 (Weeks)</option>
+                                    <option value="12">±30 (days)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr class="m-2 h w-100 p-5 bg-transparent">
+                        <div class="row m-2 pb-1 justify-content-begin">
+                            <button class="col-3 ml-5 mr-2 btn btn-danger">Clear</button>
+                            <button class="col-6   btn btn-success">Run</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="resultscontainer" class=" col card m-0  ml-2">
+
+                <p class=" text-center text-primary m-1 p-0" style="font-size: 30px;">Query Results</p>
+                <div class="customercentric table-responsive table indigo text-dark h-100 w-100 mb-1 p-0"
+                     id="resultsSankey">
+                    <table class="table  table-striped  ">
+                        <thead class="text-dark">
+                        <tr>
+                            <th>#Group</th>
+                            <th>Description</th>
+                            <th>Period</th>
+                            <th>Switch to Product-Centric</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-dark ">
+                        <tr>
+                            <td><a data-toggle="tooltip"
+                                   data-placement="left"
+                                   title="Switch to Product-centric">G0</a></td>
+                            <td>14 Males &lt;35, COCA COLA &amp; CHOCOLATE BAR</td>
+                            <td>Novembre 2017</td>
+                            <td>
+                                <button data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Switch to Product-centric" type="button"
+                                        class="btn btn-default buttonswitch " aria-label="Left Align">
+                                    <img src="{% static 'img/switch.png' %}" style="width: 50px"
+                                         class=" buttonswitch glyphicon glyphicon-align-left"
+                                         aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><a>G7</a></td>
+                            <td>22 Males <35, Hand Sanitizer</td>
+                            <td>May 2018</td>
+                            <td>
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png' %}" style="width: 50px"
+                                         class="glyphicon glyphicon-align-left"
+                                         aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><a>G9</a></td>
+                            <td>9 Males <35, SERVIET ASTERIX</td>
+                            <td>June 2018</td>
+                            <td>
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png' %}" style="width: 50px"
+                                         class="glyphicon glyphicon-align-left"
+                                         aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a>G5</a></td>
+                            <td>12 Males <35, LAVAGE CLU</td>
+                            <td>March 2018</td>
+                            <td>
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a>G12</a></td>
+                            <td> 4 Males <35, SERVIET FALBALA</td>
+                            <td>June 2018</td>
+                            <td>
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class=" productcentric  table-responsive table indigo text-dark h-100 mb-1 p-0"
+                     id="resultsTimeSeries">
+                    <table class="table table-striped">
+                        <thead class="text-dark">
+                        <tr>
+                            <th>Score</th>
+                            <th>Period</th>
+                            <th>#Customer</th>
+                            <th>Duration</th>
+                            <th>Switch to Customer-Centric</th>
+
+                        </tr>
+                        </thead>
+                        <tbody class="text-dark">
+                        <tr>
+                            <td>0.9957</td>
+                            <td>Nov 2018</td>
+                            <td>52</td>
+                            <td>6 Weeks</td>
+                            <td>
+                                <button data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Switch to Product-centric" type="button"
+                                        class="btn btn-default " aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0.9899</td>
+                            <td>Jan 2019</td>
+                            <td>71</td>
+                            <td>6 Weeks</td>
+                            <td>
+                                <button data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Switch to Product-centric" type="button"
+                                        class="btn btn-default " aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0.97</td>
+                            <td>Jan 2018</td>
+                            <td>31</td>
+                            <td>6 Weeks</td>
+                            <td>
+                                <button data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Switch to Product-centric" type="button"
+                                        class="btn btn-default " aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0.96</td>
+                            <td>Sep 2018</td>
+                            <td>29</td>
+                            <td>6 Weeks</td>
+                            <td>
+                                <button data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Switch to Product-centric" type="button"
+                                        class="btn btn-default " aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0.95</td>
+                            <td>Sep 2019</td>
+                            <td>32</td>
+                            <td>4 Weeks</td>
+                            <td>
+                                <button data-toggle="tooltip"
+                                        data-placement="left"
+                                        title="Switch to Product-centric" type="button"
+                                        class="btn btn-default " aria-label="Left Align">
+                                    <img src="{% static '/img/switch.png" style="width: 50px"
+                                         class=" glyphicon glyphicon-align-left"
+                                    aria-hidden="true"></img>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr class="ml-5 mr-5  align-items-center mb-0 p-0" style="background: lightgray">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="{% static '/js/jquery.min.js' %}"></script>
+<script src="
+{% static '/bootstrap/js/bootstrap.min.js' %}">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.4/randomColor.js">
+</script>
+<script src="{% static '/js/echarts.js' %}">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js">
+</script>
+<script src="{% static '/js/theme.js' %}">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.11/paper-full.min.js"></script>
+
+
+<script src="{% static '/js/ui_interactions.js' %}"></script>
+<script src="{% static '/js/sankeyDiagram.js' %}"></script>
+<script>
+    let a = document.getElementById('smoothingIterationPicker')
+    a.oninput = function () {
+        document.getElementById('smoothIterationValue').innerHTML = this.value
+    }
+</script>
+<script type="text/paperscript" src="{% static '/js/queryCanvas.js' %}" canvas="myCanvas"></script>
+<script>
+    $('.selectpicker').selectpicker({
+        selectAllText: 'Your select-all-text',
+        deselectAllText: 'Your deselect-all-text'
+    });
+</script>
+<script>
+    $(" .buttonswitch
+").click(e => {
+$(".customercentric").hide();
+$(".productcentric").show()
+
+$("#product-centric-tab").trigger("click")
+
+
+})
+</script>
+</body>
+
+</html>

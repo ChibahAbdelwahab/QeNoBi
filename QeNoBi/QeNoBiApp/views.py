@@ -5,7 +5,7 @@ from QeNoBiApp.models import MiningGroupsExperiment
 
 
 class SankeyView(TemplateView):
-    template_name = 'sankey.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
