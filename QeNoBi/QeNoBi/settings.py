@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -117,13 +118,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets')
 ]
 
-# Heorku conf
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    'localhost',
-    '127.0.0.1',
-    'nameofapp.herokuapp.com'
-]
 
 # QENOBIAPP Settings
 DEFAULT_DATASET = "Retail"
@@ -132,3 +126,5 @@ DEFAULT_PRODUCTS_MIN = 1
 DEFAULT_GRANULARITY = "W"
 DEFAULT_SUPPORT = 10
 DEFAULT_DEMOGRAPHICS = "sex"
+
+django_heroku.settings(locals())
