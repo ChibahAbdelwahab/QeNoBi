@@ -1,1 +1,1 @@
-web: gunicorn QeNoBi.wsgi
+web: gunicorn QeNoBi.wsgi --log-file -
