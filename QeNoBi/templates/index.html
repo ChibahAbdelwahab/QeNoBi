@@ -29,169 +29,166 @@
                 </div>
             </a>
             <div class="nav mt-5 navbar-nav text-light w-100 h-100" id="accordionSidebar">
-                <div class="row m-0 p-0 w-100">
-                    <div class="col m-2 ml-3 mt-0 mb-2 p-0 w-100">
-                        <p class="mb-3" style="font-size: 30px;">Dataset</p>
-                        <div class="ml- dataset-buttons text-white mt-1 mr-2">
-                            <button class="btn  border-white text-white h-100 w-100 ml-0 mb-2 mr-3"
-                                    type="button">
-                                Retail
-                            </button>
-                            <button class="btn border-white text-white h-100 w-100  mt-2 ml-0 mr-3"
-                                    type="button">Amazon
-                            </button>
+                <form action="api/sankey/generate" method="post">
+                    {% csrf_token %}
+                    <div class="row m-0 p-0 w-100">
+                        <div class="col m-2 ml-3 mt-0 mb-2 p-0 w-100">
+                            <p class="mb-3" style="font-size: 30px;">Dataset</p>
+                            <div class="ml- dataset-buttons text-white mt-1 mr-2">
+                                <button class="btn  border-white text-white h-100 w-100 ml-0 mb-2 mr-3"
+                                        type="button">
+                                    Retail
+                                </button>
+                                <button class="btn border-white text-white h-100 w-100  mt-2 ml-0 mr-3"
+                                        type="button">Amazon
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sidebar-elem">
-                        <div>
-                            <p>Period</p>
-                        </div>
-                        <div>
-                            <select class="form-control" multiple="multiple">
-                                <option selected="" value="12">Jan 2017-Dec 2019</option>
-                            </select>
-                        </div>
-                    </div>
-                    <hr class="bg-white w-75 mb-3 mt-3">
-                    <div class="customercentric row text-black align-items-center justify-content-center w-100 text-white p-0 m-0"
-                         id="customer-centric-selection">
                         <div class="sidebar-elem">
-                            <div class="mb-3">
-                                <p style="font-size: 30px;">Sankey</p>
+                            <div>
+                                <p>Period</p>
                             </div>
                             <div>
-                                <p>Demographics</p>
-                            </div>
-                            <div>
-                                <select class="form-control " multiple="multiple">
-                                    <option selected value="13">Gender</option>
-                                    <option selected value="11">Age</option>
-                                    <option value="12">Location</option>
-                                    <option value="12">Occupation</option>
+                                <select name="period" class="form-control" multiple="multiple">
+                                    <option selected="" value="12">Jan 2017-Dec 2019</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Product</p>
+                        <hr class="bg-white w-75 mb-3 mt-3">
+                        <div class="customercentric row text-black align-items-center justify-content-center w-100 text-white p-0 m-0"
+                             id="customer-centric-selection">
+                            <div class="sidebar-elem">
+                                <div class="mb-3">
+                                    <p style="font-size: 30px;">Sankey</p>
+                                </div>
+                                <div>
+                                    <p>Demographics</p>
+                                </div>
+                                <div>
+                                    <select name="customers_properties" class="form-control " multiple="multiple">
+                                        {% for property in customers_properties %}
+                                            <option value="{{ property.value }}"
+                                                    {% if property.value == default_demographics %}selected="selected"{% endif %}>
+                                                {{ property.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
                             </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected value="13">Category</option>
-                                    <option value="12">Price</option>
-                                    <option value="12">Name</option>
-                                </select>
+                            <div class=" sidebar-elem">
+                                <div>
+                                    <p>Product</p>
+                                </div>
+                                <div>
+                                    <select name="products_properties" class="form-control" multiple="multiple">
+                                        <option value="All" selected="selected">All</option>
+                                        {% for property in items_properties %}
+                                            <option value="{{ property.value }}"> {{ property.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" sidebar-elem">
+                                <div>
+                                    <p> Time granularity</p>
+                                </div>
+                                <div>
+                                    <select name="time_granularity" class="form-control" multiple="multiple">
+                                        {% for property in time_granularities %}
+                                            <option value="{{ property.value }}"
+                                                    {% if property.value == default_granularity %}selected="selected"{% endif %}>
+                                                {{ property.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" sidebar-elem">
+                                <div>
+                                    <p>Support</p>
+                                </div>
+                                <div>
+                                    <input type="number" class="col-10" min='0'
+                                           value="{{ support }}" name="support">
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Min products</p>
+                                </div>
+                                <div>
+                                    <input type="number" class="col-10" min='0'
+                                           value="{{ products_min }}" name="products_min">
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Max products</p>
+                                </div>
+                                <div>
+                                    <input type="number" class="col-10" min='0'
+                                           value="{{ products_max }}" name="products_max">
+                                </div>
                             </div>
                         </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p> Time granularity</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option value="13">Weekly</option>
-                                    <option selected="" value="12">Monthly</option>
-                                    <option value="14">Yearly</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Support</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">10</option>
-                                    <option value="13">20</option>
-                                    <option value="14">30</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Min products</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">3</option>
-                                    <option value="13">This is item 2</option>
-                                    <option value="14">This is item 3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Max products</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">10</option>
-                                    <option value="13">20</option>
-                                    <option value="14">30</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productcentric row text-black align-items-center justify-content-center w-100 text-white p-0 m-0"
-                         id="product-centric-selection" style="display: none">
-                        <div class="sidebar-elem">
-                            <div class="mb-3">
-                                <p style="font-size: 30px;">Time Series</p>
-                            </div>
-                            <div>
-                                <p>Product category</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">Beauty&Health</option>
-                                    <option value="13">Snacks</option>
-                                    <option value="14">Drinks</option>
+                        <div class="productcentric row text-black align-items-center justify-content-center w-100 text-white p-0 m-0"
+                             id="product-centric-selection" style="display: none">
+                            <div class="sidebar-elem">
+                                <div class="mb-3">
+                                    <p style="font-size: 30px;">Time Series</p>
+                                </div>
+                                <div>
+                                    <p>Product category</p>
+                                </div>
+                                <div>
+                                    <select class="form-control" multiple="multiple">
+                                        <option selected="" value="12">Beauty&Health</option>
+                                        <option value="13">Snacks</option>
+                                        <option value="14">Drinks</option>
 
-                                </select>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Product name</p>
+                                </div>
+                                <div>
+                                    <select class="form-control" multiple="multiple">
+                                        <option selected="" value="12">Hand Sanitizer</option>
+                                        <option value="13">Wipes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Customers</p>
+                                </div>
+                                <div>
+                                    <select class="form-control" multiple="multiple">
+                                        <option selected="" value="12">120 Males, <35</option>
+                                        <option value="13">120 Males, >65</option>
+                                        <option value="14">40 Females</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Time Granularity</p>
+                                </div>
+                                <div>
+                                    <select class="form-control" multiple="multiple">
+                                        <option selected="" value="12">Weekly</option>
+                                        <option value="13">Monthly</option>
+                                        <option value="14">Yearly</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Product name</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">Hand Sanitizer</option>
-                                    <option value="13">Wipes</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Customers</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">120 Males, <35</option>
-                                    <option value="13">120 Males, >65</option>
-                                    <option value="14">40 Females</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Time Granularity</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">Weekly</option>
-                                    <option value="13">Monthly</option>
-                                    <option value="14">Yearly</option>
-                                </select>
-                            </div>
-                        </div>
+                        <hr class="bg-white w-75 mb-3 mt-3">
+                        <button type="submit" class="btn btn-success text-white h-75 w-100  m-4">
+                            Generate
+                        </button>
                     </div>
-                    <hr class="bg-white w-75 mb-3 mt-3">
-
-                    <button class="btn btn-success text-white h-75 w-100  m-4"
-                            type="button">Generate
-                    </button>
-                </div>
+                </form>
             </div>
         </div>
     </nav>
@@ -670,14 +667,14 @@
 </script>
 <script>
     $(" .buttonswitch
-").click(e => {
-$(".customercentric").hide();
-$(".productcentric").show()
+    ").click(e => {
+    $(".customercentric").hide();
+    $(".productcentric").show()
 
-$("#product-centric-tab").trigger("click")
+    $("#product-centric-tab").trigger("click")
 
 
-})
+    })
 </script>
 </body>
 

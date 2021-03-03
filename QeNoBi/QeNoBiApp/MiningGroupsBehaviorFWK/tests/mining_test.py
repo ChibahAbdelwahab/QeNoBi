@@ -52,7 +52,7 @@ def test_run_multi_thread_lcm(frequency, min_support, properties, itemsets_size)
     lh.multithread_lcm(df, frequency, min_support, itemsets_size, properties, output_file)
     assert os.path.isfile(output_file)
     print(output_file)
-    read_lcm_output(output_file.split("/")[-1])
+    df = read_lcm_output(output_file.split("/")[-1])
 
 
 if __name__ == '__main__':

@@ -1,12 +1,10 @@
+from django.apps import apps
 from django.contrib import admin
 
-from .models import *
+models = apps.get_models()
 
-# Register your models here.
-
-admin.site.register(Group)
-admin.site.register(User)
-admin.site.register(Item)
-admin.site.register(MiningGroupsExperiment)
-admin.site.register(Link)
-admin.site.register(Transaction)
+for model in models:
+    try:
+        admin.site.register(model)
+    except admin.sites.AlreadyRegistered:
+        pass

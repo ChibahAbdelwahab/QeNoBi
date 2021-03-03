@@ -55,3 +55,37 @@ class MiningGroupsExperiment(models.Model):
     support = models.IntegerField()
     min_items = models.PositiveIntegerField()
     max_items = models.PositiveIntegerField()
+
+
+class SankeyExperiment(models.Model):
+    dataset = models.CharField(max_length=100)
+    date_min = models.DateField(max_length=100)
+    date_max = models.DateField(max_length=100)
+    demographics = models.CharField(max_length=100)
+    product = models.CharField(max_length=100)
+    time_granularity = models.CharField(max_length=100)
+    support = models.IntegerField()
+    products_min = models.IntegerField()
+    max_products = models.IntegerField()
+
+
+class TimeGranularity(models.Model):
+    value = models.CharField(max_length=10)
+    name = models.CharField(max_length=10)
+
+
+class DataSetDescription(models.Model):
+    name = models.CharField(max_length=100)
+    customers_properties = models.ManyToManyField("Property", related_name="dataset_customers", blank=True)
+    items_properties = models.ManyToManyField("Property", related_name="dataset_items", blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Property(models.Model):
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name}({self.value})"
