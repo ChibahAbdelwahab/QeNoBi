@@ -27,7 +27,6 @@ def handle_post(request):
     # lcm_handler.linear_closed_itemset_miner(df, frequency, min_support, itemsets_size, properties)
 
     return HttpResponse(str("d"))
-    context = {"datasets": DataSetDescription.objects.all()}
     return render(request, "test.html", context=context)
 
 
@@ -45,7 +44,7 @@ class SankeyView(TemplateView):
             "products_max": DEFAULT_PRODUCTS_MAX,
             "support": DEFAULT_SUPPORT,
             "time_granularities": TimeGranularity.objects.all(),
-            "customers_properties": DataSetDescription.objects.get(name=dataset_name).customers_properties.all(),
-            "items_properties": DataSetDescription.objects.get(name=dataset_name).items_properties.all(),
+            # "customers_properties": DataSetDescription.objects.get(name=dataset_name).customers_properties.all(),
+            # "items_properties": DataSetDescription.objects.get(name=dataset_name).items_properties.all(),
         })
         return context
