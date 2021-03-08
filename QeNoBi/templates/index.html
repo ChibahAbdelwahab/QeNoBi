@@ -66,9 +66,9 @@
                                 </div>
                                 <div>
                                     <select name="customers_properties" class="form-control " multiple="multiple">
-                                        {% for property in customers_properties %}
+                                        {% for property in default_customers_properties %}
                                             <option value="{{ property.value }}"
-                                                    {% if property.value == default_demographics %}selected="selected"{% endif %}>
+                                                    {% if property.value in customers_properties %}selected="selected"{% endif %}>
                                                 {{ property.name }}</option>
                                         {% endfor %}
                                     </select>
@@ -93,9 +93,9 @@
                                 </div>
                                 <div>
                                     <select name="time_granularity" class="form-control" multiple="multiple">
-                                        {% for property in time_granularities %}
+                                        {% for property in default_time_granularities %}
                                             <option value="{{ property.value }}"
-                                                    {% if property.value == default_granularity %}selected="selected"{% endif %}>
+                                                    {% if property.value == time_granularity %}selected="selected"{% endif %}>
                                                 {{ property.name }}</option>
                                         {% endfor %}
                                     </select>
@@ -262,7 +262,7 @@
             </div>
         </div>
         <div class="row tabscontent  content  m-1 p-0" style="border: 0.1px solid lightgray">
-            <div class="col-8 " style="background: white">
+            <div class="col-8 " style="background: #ffffff">
                 <div class="row w-100 m-0 p-0">
                     <div class="col-8 p-0 m-0">
                         <p class="customercentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query on
@@ -649,7 +649,14 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.11/paper-full.min.js"></script>
 
-
+<script>
+    var sankey_groups =
+    {{sankey_groups|safe}}
+    var sankey_links =
+    {{sankey_links|safe}}
+    var customers_properties =
+    {{ customers_properties |safe}}
+</script>
 <script src="{% static '/js/ui_interactions.js' %}"></script>
 <script src="{% static '/js/sankeyDiagram.js' %}"></script>
 <script>
@@ -676,6 +683,7 @@
 
     })
 </script>
+
 </body>
 
 </html>
