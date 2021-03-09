@@ -92,7 +92,7 @@
                                     <p> Time granularity</p>
                                 </div>
                                 <div>
-                                    <select name="time_granularity" class="form-control" multiple="multiple">
+                                    <select name="time_granularity" class="form-control">
                                         {% for property in default_time_granularities %}
                                             <option value="{{ property.value }}"
                                                     {% if property.value == time_granularity %}selected="selected"{% endif %}>

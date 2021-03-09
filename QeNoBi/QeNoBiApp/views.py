@@ -7,7 +7,8 @@ from QeNoBi.settings import DEFAULT_DATASET, DEFAULT_PRODUCTS_MAX, DEFAULT_PRODU
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-from mining_groups_behavior.handler import run_mining
+from mining_groups_behavior.handler import run_mining, experiment_name
+from psycopg2._psycopg import IntegrityError
 from sqlalchemy import create_engine
 
 from .models import *
@@ -25,8 +26,19 @@ def handle_post(request):
     support = request.POST.get("support")
     products_min = request.POST.get("products_min")
     products_max = request.POST.get("product_max")
-    sankey_experiment_id = run_mining(DEFAULT_DATASET, time_granularity, support, customers_properties,
-                                      [products_min, products_max])
+    exp_params = {
+        "dataset": "Retail",
+        "time_granularity": time_granularity,
+        "support": support,
+        "properties": str(customers_properties),
+        "itemsets_size": str([products_min, products_max]),
+    }
+    try:
+        print(exp_params)
+        sankey_experiment_id = run_mining(DEFAULT_DATASET, time_granularity, support, customers_properties,
+                                          [products_min, products_max])
+    except Exception:
+        sankey_experiment_id = experiment_name(exp_params)
     sankey_groups, sankey_links = get_sankey_data(sankey_experiment_id)
 
     # df = get(dataset)
@@ -55,7 +67,8 @@ class SankeyView(TemplateView):
         context = super().get_context_data(**kwargs)
         dataset_name = DEFAULT_DATASET
 
-        sankey_groups, sankey_links = get_sankey_data()
+        sankey_experiment_id = 'Retail_4M_100_[sex]_[1, None]'
+        sankey_groups, sankey_links = get_sankey_data(sankey_experiment_id)
         context.update({
             'MiningGroupsExperiments': MiningGroupsExperiment.objects.all(),
             "default_time_granularities": DEFAULT_GRANULARITY,
@@ -66,7 +79,7 @@ class SankeyView(TemplateView):
             "sankey_groups": sankey_groups,
             "sankey_links": sankey_links,
             "customers_properties": ["Gender"],
-            "time_granularity": TimeGranularity.objects.all()[0],
+            "time_granularity": TimeGranularity.objects.all(),
 
             # "items_properties": DataSetDescription.objects.get(name=dataset_name).items_properties.all(),
         })

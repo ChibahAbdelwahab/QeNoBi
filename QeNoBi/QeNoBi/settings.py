@@ -121,9 +121,16 @@ ALLOWED_HOSTS = ['0.0.0.0', ]
 DEFAULT_DATASET = "Retail"
 DEFAULT_PRODUCTS_MAX = 10
 DEFAULT_PRODUCTS_MIN = 1
-DEFAULT_GRANULARITY = "W"
+DEFAULT_GRANULARITY = [
+    {"name": "Weekly", "value": "W"},
+    {"name": "Monthly", "value": "M"},
+    {"name": "Yearly", "value": "Y"}
+]
 DEFAULT_SUPPORT = 10
-DEFAULT_DEMOGRAPHICS = "sex"
+DEFAULT_DEMOGRAPHICS = [
+    {"name": "Gender", "value": "sex"},
+    {"name": "Age", "value": "age"}
+]
 
 django_heroku.settings(locals())
 
