@@ -123,7 +123,12 @@ DEFAULT_PRODUCTS_MAX = 10
 DEFAULT_PRODUCTS_MIN = 1
 DEFAULT_GRANULARITY = [
     {"name": "Weekly", "value": "W"},
+    {"name": "2-Weeks", "value": "2W"},
+    {"name": "3-Weeks", "value": "3W"},
     {"name": "Monthly", "value": "M"},
+    {"name": "3-Months", "value": "3M"},
+    {"name": "6-Months", "value": "6M"},
+    {"name": "9-Months", "value": "9M"},
     {"name": "Yearly", "value": "Y"}
 ]
 DEFAULT_SUPPORT = 10
@@ -131,6 +136,13 @@ DEFAULT_DEMOGRAPHICS = [
     {"name": "Gender", "value": "sex"},
     {"name": "Age", "value": "age"}
 ]
+DEFAULT_SANKEY_PARAMS = {
+    "dataset": DEFAULT_DATASET,
+    "time_granularity": "Y",
+    "support": 100,
+    "customers_properties": ["sex"],
+    "itemsets_size": [1, 100],
+}
 
 django_heroku.settings(locals())
 

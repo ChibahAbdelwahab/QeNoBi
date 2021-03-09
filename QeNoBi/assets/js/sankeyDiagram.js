@@ -1838,7 +1838,6 @@ $(window).on('resize', function () {
 
 
 $("#product-centric-tab").on("click", function () {
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHH")
     timeSeries.setOption(option);
     timeSeries.resize();
 
@@ -1849,32 +1848,19 @@ $("#product-centric-tab").on("click", function () {
 // Mouse listeners
 sankeyChart.on('mouseover', (params) => {
     if (params.dataType === 'node') {
-        /* you can check params to look for what you want to pick */
-        // myChart.dispatchAction({
-        //     /* HighLight type */
-        //     type: 'focusNodeAdjacency',
-        //     /* OffLight type if you need */
-        //     // type: 'unfocusNodeAdjacency',
-        //     /* Positioning the series with seriesId/seriesIndex/seriesName */
-        //     seriesIndex: 0,
-        //     /* Positioning the node with dataIndex */
-        //     dataIndex: params.dataIndex
-        // });
-        console.log("Hovered", params)
         fillDetailsTable(params.data)
     }
 })
 
 
 function fillDetailsTable(data) {
-    let description = data.size + " Males<35, " + data.itemset_name.slice(3, -3)
+    let description = data.size + ", " + data.property_values + ", " + data.itemset_name.slice(1, -1)
     let period = new Date(data.period)
     period = period.toLocaleString("default", {month: 'long'}) + " " + period.getFullYear()
     $("#details-group-description").html(description)
     $("#details-group-id").html("G" + data.name)
     $("#details-group-incoming").html(data.in)
     $("#details-group-outgoing").html(data.out)
-
     $("#details-group-period").html(period)
 }
 
