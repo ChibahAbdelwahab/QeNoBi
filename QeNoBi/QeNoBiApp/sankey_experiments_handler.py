@@ -8,7 +8,6 @@ def get_sankey_data(sankey_experiment_id):
     import pandas as pd
     engine = create_engine(os.environ.get('DATABASE_URL'))
 
-
     query = """
             Select * from "{}" where sankey_experiment_id='{}' 
     """
@@ -34,4 +33,5 @@ def get_sankey_data(sankey_experiment_id):
     links["lineStyle"] = "{'color': '#1d3557', 'opacity': 1}}"
     links[["source", "target", "user_id", "label", "lineStyle"]]
     links = list(links.T.to_dict().values())
+    engine.dispose()
     return groups, links
