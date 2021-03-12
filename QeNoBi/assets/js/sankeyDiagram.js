@@ -1399,7 +1399,7 @@ var option = {
             splitLine: {
                 show: false
             },
-            data: ['Jan-2017', 'Jan-2017', 'Jan-2017', 'Feb-2017', 'Mar-2017', 'Apr-2017', 'May-2017', 'Jun-2017', 'Jul-2017', 'Aug-2017', 'Sep-2017', 'Oct-2017', 'Nov-2017', 'Dec-2017', 'Feb-2018', 'Mar-2018', 'Apr-2018', 'May-2018', 'Jun-2018', 'Jul-2018', 'Aug-2018', 'Sep-2018']
+            data: periods,
         },
         {
             position: "bottom",
@@ -1424,7 +1424,7 @@ var option = {
         show: false,
     },
     dataZoom: {
-        start: 55,
+        start: 100,
         end: 100,
 
     },
@@ -1752,7 +1752,6 @@ option = {
                 }
             }
 
-            // data: ['Jan-2017', 'Jan-2017', 'Jan-2017', 'Feb-2017', 'Mar-2017', 'Apr-2017', 'May-2017', 'Jun-2017', 'Jul-2017', 'Aug-2017', 'Sep-2017', 'Oct-2017', 'Nov-2017', 'Dec-2017', 'Feb-2018', 'Mar-2018', 'Apr-2018', 'Mai-2018', 'Jun-2018', 'Jun-2018']
         },
         {
             position: "bottom",

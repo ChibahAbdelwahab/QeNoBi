@@ -25,8 +25,8 @@ def get_sankey_data(sankey_experiment_id):
     depth_dict = {i: idx * 100 / groups.period.nunique() for idx, i in enumerate(groups.period.unique())}
     groups["depth"] = groups.period.apply(lambda x: depth_dict[x])
     groups.period = pd.to_datetime(groups.period).dt.date.astype(str)
+    periods = [str(i) for i in groups.period.unique()]
     groups = list(groups.T.to_dict().values())
-    print(query.format("mgb_links", sankey_experiment_id))
     links = pd.read_sql(query.format("mgb_links", sankey_experiment_id), con=engine).astype(str)
     links.user_id = links.user_id.apply(literal_eval).apply(list)
     links["value"] = links.user_id.apply(len)
@@ -34,4 +34,4 @@ def get_sankey_data(sankey_experiment_id):
     links[["source", "target", "user_id", "label", "lineStyle"]]
     links = list(links.T.to_dict().values())
     engine.dispose()
-    return groups, links
+    return groups, links, periods

@@ -139,7 +139,7 @@ DEFAULT_DEMOGRAPHICS = [
 DEFAULT_SANKEY_PARAMS = {
     "dataset": DEFAULT_DATASET,
     "time_granularity": "Y",
-    "support": 100,
+    "support": 1000,
     "customers_properties": ["sex"],
     "itemsets_size": [1, 100],
 }

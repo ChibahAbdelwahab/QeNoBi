@@ -35,7 +35,7 @@ class SankeyView(TemplateView):
                                               [products_min, products_max], overwrite=True)
         except Exception:
             sankey_experiment_id = experiment_name(exp_params)
-        sankey_groups, sankey_links = get_sankey_data(sankey_experiment_id)
+        sankey_groups, sankey_links, periods = get_sankey_data(sankey_experiment_id)
 
         context = {
             "default_time_granularities": DEFAULT_GRANULARITY,
@@ -48,6 +48,7 @@ class SankeyView(TemplateView):
             "sankey_links": sankey_links,
             "customers_properties": customers_properties,
             "time_granularity": exp_params["time_granularity"],
+            "periods": periods,
 
         }
         return render(request, "index.html", context=context)
@@ -56,7 +57,7 @@ class SankeyView(TemplateView):
         context = super().get_context_data(**kwargs)
         exp_params = DEFAULT_SANKEY_PARAMS
         sankey_experiment_id = 'Retail_Y_100_[sex]_[1, None]'
-        sankey_groups, sankey_links = get_sankey_data(sankey_experiment_id)
+        sankey_groups, sankey_links, periods = get_sankey_data(sankey_experiment_id)
         context.update({
             'MiningGroupsExperiments': MiningGroupsExperiment.objects.all(),
             "default_time_granularities": DEFAULT_GRANULARITY,
@@ -68,5 +69,6 @@ class SankeyView(TemplateView):
             "sankey_links": sankey_links,
             "customers_properties": exp_params["customers_properties"],
             "time_granularity": exp_params["time_granularity"],
+            "periods": periods
         })
         return context
