@@ -1424,7 +1424,7 @@ var option = {
         show: false,
     },
     dataZoom: {
-        start: 100,
+        start: 0,
         end: 100,
 
     },
