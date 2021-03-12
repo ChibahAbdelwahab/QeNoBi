@@ -3288,6 +3288,7 @@ var option = {
     ],
 
 };
+console.log(sankey)
 sankeyChart.setOption(option);
 
 
