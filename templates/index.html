@@ -29,7 +29,7 @@
                 </div>
             </a>
             <div class="nav mt-5 navbar-nav text-light w-100 h-100" id="accordionSidebar">
-                <form action="" method="post">
+                <form action="" method="post" name="query_form">
                     {% csrf_token %}
                     <div class="row m-0 p-0 w-100">
                         <div class="col m-2 ml-3 mt-0 mb-2 p-0 w-100">
@@ -263,181 +263,198 @@
         </div>
         <div class="row tabscontent  content  m-1 p-0" style="border: 0.1px solid lightgray">
             <div class="col-8 " style="background: #ffffff">
-                <div class="row w-100 m-0 p-0">
-                    <div class="col-8 p-0 m-0">
-                        <p class="customercentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query on
-                            Sankey</p>
-                        <p class=" productcentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query on
-                            Time Series </p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="sankey_experiment_id" value="{{ sankey_experiment_id }}">
+                    <div class="row w-100 m-0 p-0">
+                        <div class="col-8 p-0 m-0">
+                            <p class="customercentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query
+                                on
+                                Sankey</p>
+                            <p class=" productcentric text-center text-primary p-0 m-1" style="font-size: 30px;">Query
+                                on
+                                Time Series </p>
 
-                    </div>
-                    <div class="col-4 mt-2 end">
-                        <div class="row align-items-end justify-content-center p-0  mb-0 mt-0">
-                            <label for="topk" class="col-2 m-auto">TopK</label>
-                            <input value="5" class="col-8 form-control  m-2" id="topk" type="number">
                         </div>
-                    </div>
-                    <div class="col query-input  align">
-                        <div class="row align-bottom h-100 mb-0">
-                            <p class="col-12  ml-1 mb-0 pb-0  " style="font-size: 25px;">Shape </p>
-                            <div class="productcentric  m-1 pl-0 ">
-                                <canvas id="myCanvas" style="height: auto;" class="w-100 pb-0 mr-1"></canvas>
-                                <hr class="col-12 ml-2 mb-2 mt-2 mr-3  w-100 ">
-                                <div class="row pb-1 ml-3 bg w-100  mb-0 justify-content-lg-start  ">
+                        <div class="col-4 mt-2 end">
+                            <div class="row align-items-end justify-content-center p-0  mb-0 mt-0">
+                                <label for="topk" class="col-2 m-auto">TopK</label>
+                                <input value="5" class="col-8 form-control  m-2" id="topk" type="number">
+                            </div>
+                        </div>
+                        <div class="col query-input  align">
+                            <div class="row align-bottom h-100 mb-0">
+                                <p class="col-12  ml-1 mb-0 pb-0  " style="font-size: 25px;">Shape </p>
+                                <div class="productcentric  m-1 pl-0 ">
+                                    <canvas id="myCanvas" style="height: auto;" class="w-100 pb-0 mr-1"></canvas>
+                                    <hr class="col-12 ml-2 mb-2 mt-2 mr-3  w-100 ">
+                                    <div class="row pb-1 ml-3 bg w-100  mb-0 justify-content-lg-start  ">
 
-                                    <select class="col-9 ml-0 text-dark form-control" placeholder="Predefined shape">
-                                        <option disabled selected value="">Predefined queries</option>
-                                        <option value="A" selected="">IV Shape</option>
-                                        <option value="A">V Shape</option>
-                                        <option value="A">A Shape</option>
-                                        <option value="A">D Shape</option>
-                                    </select>
-                                    <button id="query-clear-button"
-                                            class="col-2 mt-1 mb-1 mr-3-1  pl-0  btn btn-danger btn-sm">Clear
-                                    </button>
+                                        <select name="query_shape_ts" class="col-9 ml-0 text-dark form-control"
+                                                placeholder="Predefined shape">
+                                            <option disabled selected value="">Predefined queries</option>
+                                            <option value="IV" selected="">IV Shape</option>
+                                            <option value="V">V Shape</option>
+                                            <option value="A">A Shape</option>
+                                            <option value="D">D Shape</option>
+                                        </select>
+                                        <button id="query-clear-button"
+                                                class="col-2 mt-1 mb-1 mr-3-1  pl-0  btn btn-danger btn-sm">Clear
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="customercentric m-1 pl-0 ">
+                                    <canvas id="graphquerycanvas"
+                                            style="height: auto;position: relative;background: lightgray"
+                                            class="w-100 pb-0 mr-1"></canvas>
+                                    <input type="text"
+                                           class="form-control m-auto align-items-center justify-content-center text-dark"
+                                           value="SPLIT - MERGE">
+                                    <hr class="col-12 ml-2 mb-2 mt-2 mr-3  w-100 ">
+                                    <div class="row pb-1 ml-3 bg w-100  mb-0 justify-content-lg-start  ">
+
+                                        <select name="query_shape_sankey" class="col-9  ml-0 text-dark form-control"
+                                                placeholder="Predefined shape">
+                                            <option disabled selected value="">Predefined queries</option>
+                                            {% for query in queries %}
+                                                <option value="{{ query.value }}"
+                                                        {% if query == selected_query %}selected="selected"{% endif %}>
+                                                    {{ query.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button id="query-clear-button"
+                                                class="col-2 mt-1 mb-1   pl-0  btn btn-danger btn-sm">Clear
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="customercentric m-1 pl-0 ">
-                                <canvas id="graphquerycanvas"
-                                        style="height: auto;position: relative;background: lightgray"
-                                        class="w-100 pb-0 mr-1"></canvas>
-                                <input type="text"
-                                       class="form-control m-auto align-items-center justify-content-center text-dark"
-                                       value="SPLIT - MERGE">
-                                <hr class="col-12 ml-2 mb-2 mt-2 mr-3  w-100 ">
-                                <div class="row pb-1 ml-3 bg w-100  mb-0 justify-content-lg-start  ">
+                        </div>
+                        <div class="col query-input">
+                            <p class="ml-0" style="font-size: 25px;">Customers</p>
 
-                                    <select class="col-9  ml-0 text-dark form-control" placeholder="Predefined shape">
-                                        <option disabled selected value="">Predefined queries</option>
-                                        <option value="A" selected="">Split-Merge Shape</option>
-                                        <option value="A">Stable-Merge Shape</option>
-                                        <option value="A">Perishes Shape</option>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Gender</p>
+                                </div>
+                                <div>
+                                    <select name="query_gender" class=" form-control text-dark" multiple="multiple">
+                                        {% for gender in genders %}
+                                            <option value="{{ gender }}"
+                                                    {% if gender in selected_genders %}selected="selected"{% endif %}>
+                                                {{ gender }}</option>
+                                        {% endfor %}
                                     </select>
-                                    <button id="query-clear-button"
-                                            class="col-2 mt-1 mb-1   pl-0  btn btn-danger btn-sm">Clear
-                                    </button>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Age</p>
+                                </div>
+                                <div>
+                                    <select name="query_age" class="form-control" multiple="multiple">
+                                        {% for age in ages %}
+                                            <option value="{{ age }}"
+                                                    {% if age in selected_ages %}selected="selected"{% endif %}>
+                                                {{ age }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div><p>Location</p></div>
+                                <div>
+                                    <select name="query_location" class="form-control" multiple="multiple">
+                                        {% for location in locations %}
+                                            <option value="{{ location }}"
+                                                    {% if location in selected_locations %}selected="selected"{% endif %}>
+                                                {{ location }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem pb-1">
+                                <div>
+                                    <p>Occupation</p>
+                                </div>
+                                <div>
+                                    <select name="query_occupation" class="form-control " multiple="multiple">
+                                        {% for occupation in occupations %}
+                                            <option value="{{ occupation }}"
+                                                    {% if occupation in selected_occupations %}selected="selected"{% endif %}>
+                                                {{ occupation }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col query-input">
-                        <p class="ml-0" style="font-size: 25px;">Customers</p>
+                        <div class="col query-input">
+                            <p class="ml-0" style="font-size: 25px;">Products</p>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Category</p>
+                                </div>
+                                <div>
+                                    <select name="query_category" class="form-control" multiple="multiple">
+                                        <option value="" selected="" value="12">ALL</option>
+                                        <option value="Snacks">Snacks</option>
+                                        <option value="Beauty&Health">Beauty&Health</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Name</p>
+                                </div>
+                                <div>
+                                    <select name="query_product_name" class="form-control text-dark"
+                                            multiple="multiple">
+                                        <option value="" selected>ALL</option>
+                                        <option value="Hand Sanitizer">Hand Sanitizer</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col query-input">
+                            <p class="ml-0" style="font-size: 25px;">Time</p>
+                            <div class="sidebar-elem">
 
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Gender</p>
+                                <div>
+                                    <p>Time span</p>
+                                </div>
+                                <div>
+                                    <select name="query_time_span" title=" " id="query-time" class="form-control">
+                                        <option value="12" selected>ALL</option>
+                                        <option value="12">1 (Week)</option>
+                                        <option value="12">2 (Weeks)</option>
+                                        <option value="12">3 (Weeks)</option>
+                                        <option value="12">4 (Weeks)</option>
+                                        <option value="13">5 (weeks)</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div>
-                                <select class=" form-control text-dark" multiple="multiple">
-                                    <option value="ALL">ALL</option>
-                                    <option selected="" value="12">Male</option>
-                                    <option value="13">Female</option>
-                                </select>
+                            <div class="sidebar-elem">
+                                <div>
+                                    <p>Tolerance</p>
+                                </div>
+                                <div>
+                                    <select name="query_time_tolerance" title=" " id="query-time-tolerance"
+                                            class="form-control text-dark">
+                                        <option value="13" selected>ALL</option>
+                                        <option value="13">±1 (Week)</option>
+                                        <option value="13">±2 (Weeks)</option>
+                                        <option value="13">±3 (Weeks)</option>
+                                        <option value="12">±30 (days)</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Age</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option value="12">ALL</option>
-                                    <option selected="" value="12"><35</option>
-                                    <option value="13">35-49</option>
-                                    <option value="14">>49</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div><p>Location</p></div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option value="12" selected="">Paris</option>
-                                    <option value="12">ALL</option>
-                                    <option value="13">Marseille</option>
-                                    <option value="14">Grenoble</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem pb-1">
-                            <div>
-                                <p>Occupation</p>
-                            </div>
-                            <div>
-                                <select class="form-control " multiple="multiple">
-                                    <option selected="" value="12">ALL</option>
-                                    <option value="12">Student</option>
-                                    <option value="13">Doctor</option>
-                                    <option value="14">Salesman</option>
-                                </select>
+                            <hr class="m-2 h w-100 p-5 bg-transparent">
+                            <div class="row m-2 pb-1 justify-content-begin">
+                                <button class="col-3 ml-5 mr-2 btn btn-danger">Clear</button>
+                                <button type="submit" class="col-6   btn btn-success">Run</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col query-input">
-                        <p class="ml-0" style="font-size: 25px;">Products</p>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Category</p>
-                            </div>
-                            <div>
-                                <select class="form-control" multiple="multiple">
-                                    <option selected="" value="12">ALL</option>
-                                    <option value="13">Snacks</option>
-                                    <option value="14">Beauty&Health</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Name</p>
-                            </div>
-                            <div>
-                                <select class="form-control text-dark" multiple="multiple">
-                                    <option value="12" selected>ALL</option>
-                                    <option value="12">Hand Sanitizer</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col query-input">
-                        <p class="ml-0" style="font-size: 25px;">Time</p>
-                        <div class="sidebar-elem">
-
-                            <div>
-                                <p>Time span</p>
-                            </div>
-                            <div>
-                                <select title=" " id="query-time" class="form-control">
-                                    <option value="12" selected>ALL</option>
-                                    <option value="12">1 (Week)</option>
-                                    <option value="12">2 (Weeks)</option>
-                                    <option value="12">3 (Weeks)</option>
-                                    <option value="12">4 (Weeks)</option>
-                                    <option value="13">5 (weeks)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sidebar-elem">
-                            <div>
-                                <p>Tolerance</p>
-                            </div>
-                            <div>
-                                <select title=" " id="query-time-tolerance" class="form-control text-dark">
-                                    <option value="13" selected>ALL</option>
-                                    <option value="13">±1 (Week)</option>
-                                    <option value="13">±2 (Weeks)</option>
-                                    <option value="13">±3 (Weeks)</option>
-                                    <option value="12">±30 (days)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <hr class="m-2 h w-100 p-5 bg-transparent">
-                        <div class="row m-2 pb-1 justify-content-begin">
-                            <button class="col-3 ml-5 mr-2 btn btn-danger">Clear</button>
-                            <button class="col-6   btn btn-success">Run</button>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
             <div id="resultscontainer" class=" col card m-0  ml-2">
 
@@ -675,7 +692,7 @@
     });
 </script>
 <script>
-    $(" .buttonswitch    ").click(e => {
+    $(" .buttonswitch").click(e => {
         $(".customercentric").hide();
         $(".productcentric").show()
 

@@ -61860,7 +61860,12 @@
         }
     });
     const intersection = (list1, list2) => {
-        return list1.filter(elem => list2.includes(elem)).length
+        try {
+            return list1.filter(elem => list2.includes(elem)).length
+
+        } catch (error) {
+            return 0
+        }
     }
 
 // Add animation to the view

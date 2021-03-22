@@ -144,6 +144,12 @@ DEFAULT_SANKEY_PARAMS = {
     "itemsets_size": [1, 100],
 }
 
+DEFAULT_QUERIES = [
+    {"name": "GROWS-STABLE", "value": "G S"},
+    {"name": "MERGES-SPLITS", "value": "M ST"},
+    {"name": "SPLITS-GROWS", "value": "ST G"},
+]
+
 django_heroku.settings(locals())
 
 options = DATABASES['default'].get('OPTIONS', {})
