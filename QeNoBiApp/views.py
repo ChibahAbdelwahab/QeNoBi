@@ -32,19 +32,19 @@ class SankeyView(TemplateView):
             "itemsets_size": str([products_min, products_max]),
         }
 
-        #### Sankey query request
+        # Sankey query request
         sankey_experiment_id = request.POST.get("sankey_experiment_id")
         if sankey_experiment_id:
             query_shape_sankey = request.POST.get("query_shape_sankey").split()
             print("Querying", query_shape_sankey)
             sankey_groups, sankey_links, periods = run_sankey_query(query_shape_sankey, sankey_experiment_id)
         else:
-            #### Sankey generation request
-
+            # Sankey generation request
             try:
                 print(exp_params)
+                overwrite = sankey_experiment_id != 'Retail_Y_1000_[sex]_[1, 100]'
                 sankey_experiment_id = run_mining(DEFAULT_DATASET, time_granularity, support, customers_properties,
-                                                  [products_min, products_max], overwrite=False)
+                                                  [products_min, products_max], overwrite=overwrite)
             except Exception:
                 sankey_experiment_id = experiment_name(exp_params)
             sankey_groups, sankey_links, periods = get_sankey_data(sankey_experiment_id)
