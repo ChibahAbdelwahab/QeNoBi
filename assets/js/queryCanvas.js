@@ -1,84 +1,46 @@
-var empty = false
-var path = new Path();
+var path;
 
-
-path.segments = [];
-path.add({x: 20, y: 100});
-path.add({x: 100, y: 20});
-path.add({x: 190, y: 90});
-path.smooth();
-
-//path.selected;
-
-path.strokeColor = 'black';
-path.strokeWidth = 5;
-
-// Fully select the path, so we can see its handles:
-path.fullySelected = true;
-
-var hitOptions = {
-    segments: true,
-    handles: true,
-    stroke: true,
-    fill: true,
-    tolerance: 5
-};
-
-var segment, path, handle;
-var movePath = false;
+var textItem = new PointText({
+	content: 'Click and drag to draw a line.',
+	point: new Point(20, 30),
+	fillColor: 'black',
+});
 
 function onMouseDown(event) {
-    segment = path = handle = null;
-    var hitResult = project.hitTest(event.point, hitOptions);
+	// If we produced a path before, deselect it:
+	if (path) {
+		path.selected = false;
+	}
 
-    if (event.modifiers.shift) {
-        if (hitResult.type == 'segment') {
-            hitResult.segment.remove();
-        }
-        ;
-        return;
-    }
-
-    if (hitResult) {
-        path = hitResult.item;
-        if (hitResult.type == 'segment') {
-            segment = hitResult.segment;
-        } else if (hitResult.type == 'stroke') {
-            var location = hitResult.location;
-            segment = path.insert(location.index + 1, event.point);
-            path.smooth();
-        } else if (hitResult.type == 'handle-in') {
-            handle = hitResult.segment.handleIn;
-        } else if (hitResult.type == 'handle-out') {
-            handle = hitResult.segment.handleOut;
-        }
-    }
-    movePath = hitResult.type == 'fill';
-    if (movePath)
-        project.activeLayer.addChild(hitResult.item);
-
-    path.fullySelected = true;
+	// Create a new path and set its stroke color to black:
+	path = new Path({
+		segments: [event.point],
+		strokeColor: 'black',
+		// Select the path, so we can see its segment points:
+		fullySelected: true
+	});
 }
 
-
+// While the user drags the mouse, points are added to the path
+// at the position of the mouse:
 function onMouseDrag(event) {
-    if (segment) {
-        segment.point = event.point;
-        path.smooth();
-    }
+	path.add(event.point);
 
-    if (handle) {
-        handle.x += event.delta.x;
-        handle.y += event.delta.y;
-    }
-
-
-    if (movePath)
-        path.position += event.delta;
+	// Update the content of the text item to show how many
+	// segments it has:
 }
 
-$("#query-clear-button").click(function () {
-    project.clear()
-    empty = true
-})
-console.log("Last element ", path.segments)
+// When the mouse is released, we simplify the path:
+function onMouseUp(event) {
+	var segmentCount = path.segments.length;
+
+	// When the mouse is released, simplify it:
+	path.simplify(10);
+
+	// Select the path, so we can see its segments:
+	path.fullySelected = true;
+
+	var newSegmentCount = path.segments.length;
+	var difference = segmentCount - newSegmentCount;
+	var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+}

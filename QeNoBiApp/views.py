@@ -93,6 +93,6 @@ class SankeyView(TemplateView):
             "selected_locations": ["ALL"],
             "occupations": ["ALL", "Doctor", "Salesman", ],
             "selected_occupations": ["ALL"],
-            "sankey_experiment_id": sankey_experiment_id
+            "sankey_experiment_id": sankey_experiment_id,
         })
         return context
